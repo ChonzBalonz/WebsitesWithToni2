@@ -27,7 +27,7 @@ export default function HomePage() {
       {/* Header Section */}
       <div className="relative flex flex-col items-center justify-center min-h-[60vh] bg-black overflow-hidden">
         <video
-          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none select-none"
           src="/assets/videos/CodingHeroVIDEO.mp4"
           autoPlay
           loop
@@ -36,7 +36,6 @@ export default function HomePage() {
           controls={false}
           disablePictureInPicture
           disableRemotePlayback
-          onContextMenu={e => e.preventDefault()}
         />
         <div className="absolute inset-0 bg-black/60 z-10" />
         <div className="relative z-20 flex flex-col items-center pt-8 md:pt-12 pb-8 px-4">
@@ -103,7 +102,7 @@ export default function HomePage() {
             </Link>
             <div className="mt-6 relative">
               <video
-                className="w-full max-w-md rounded-lg shadow-lg mx-auto pointer-events-none"
+                className="w-full max-w-md rounded-lg shadow-lg mx-auto pointer-events-none select-none"
                 src="/assets/videos/cortapelos website preivew .mp4"
                 autoPlay
                 loop
@@ -112,7 +111,6 @@ export default function HomePage() {
                 controls={false}
                 disablePictureInPicture
                 disableRemotePlayback
-                onContextMenu={e => e.preventDefault()}
                 poster="/assets/images/nextjs-boilerplate-sign-in.png"
               >
                 <track kind="captions" />
@@ -127,7 +125,7 @@ export default function HomePage() {
             </Link>
             <div className="mt-6 relative">
               <video
-                className="w-full max-w-md rounded-lg shadow-lg mx-auto pointer-events-none"
+                className="w-full max-w-md rounded-lg shadow-lg mx-auto pointer-events-none select-none"
                 src="/assets/videos/Beautyempressbe website preview.mp4"
                 autoPlay
                 loop
@@ -136,7 +134,6 @@ export default function HomePage() {
                 controls={false}
                 disablePictureInPicture
                 disableRemotePlayback
-                onContextMenu={e => e.preventDefault()}
                 poster="/assets/images/nextjs-boilerplate-sign-up.png"
               >
                 <track kind="captions" />

@@ -97,7 +97,7 @@ export default function PortfolioPage() {
                 {item.video
                   ? (
                       <video
-                        className="w-full h-full object-cover pointer-events-none"
+                        className="w-full h-full object-cover pointer-events-none select-none"
                         src={item.video}
                         autoPlay
                         loop
@@ -106,7 +106,6 @@ export default function PortfolioPage() {
                         controls={false}
                         disablePictureInPicture
                         disableRemotePlayback
-                        onContextMenu={e => e.preventDefault()}
                         poster={item.image}
                       />
                     )
