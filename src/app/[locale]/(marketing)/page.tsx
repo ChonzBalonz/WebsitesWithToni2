@@ -46,10 +46,32 @@ export default function HomePage() {
           <div className="flex-1 text-center md:text-left">
             <h3 className="text-2xl font-bold mb-2">Your Vision, Our Expertise</h3>
             <p className="text-lg">At Websites With Toni, we specialize in creating tailored websites for small businesses, ensuring your online presence reflects your brand's identity and attracts loyal customers through intuitive design and user-friendly navigation.</p>
+            <video
+              className="mt-6 w-full max-w-md rounded-lg shadow-lg mx-auto"
+              src="/assets/videos/cortapelos website preivew .mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="/assets/images/nextjs-boilerplate-sign-in.png"
+            >
+              <track kind="captions" />
+            </video>
           </div>
           <div className="flex-1 text-center md:text-left">
             <h3 className="text-2xl font-bold mb-2">Empowering Small Businesses Online</h3>
             <p className="text-lg">We understand the unique needs of each business, whether a local shop or a small business, and provide solutions from simple landing pages to fully functional sites that drive results.</p>
+            <video
+              className="mt-6 w-full max-w-md rounded-lg shadow-lg mx-auto"
+              src="/assets/videos/Beautyempressbe website preview.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="/assets/images/nextjs-boilerplate-sign-up.png"
+            >
+              <track kind="captions" />
+            </video>
           </div>
         </div>
       </section>
