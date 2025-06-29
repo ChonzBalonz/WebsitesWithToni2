@@ -1,6 +1,17 @@
 export default function HomePage() {
   return (
     <div className="bg-black min-h-screen w-full text-white font-serif">
+      {/* Sticky Navigation Bar */}
+      <nav className="sticky top-0 z-30 w-full bg-black bg-opacity-90 border-b border-gray-800">
+        <div className="max-w-6xl mx-auto flex items-center justify-center py-4">
+          <ul className="flex space-x-8 text-lg font-medium">
+            <li><span className="text-orange-400 border-b-2 border-orange-400">Home</span></li>
+            <li><span className="hover:text-orange-400 cursor-pointer">Services</span></li>
+            <li><span className="hover:text-orange-400 cursor-pointer">Contact</span></li>
+          </ul>
+        </div>
+      </nav>
+
       {/* Header Section */}
       <div className="relative flex flex-col items-center justify-center min-h-[60vh] bg-black overflow-hidden">
         <video
@@ -14,11 +25,6 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-black/60 z-10" />
         <div className="relative z-20 flex flex-col items-center pt-12 pb-8">
           <img src="/assets/images/arcjet-light.svg" alt="Logo" className="w-24 h-24 mb-4" />
-          <nav className="flex space-x-8 mb-8 text-lg font-medium">
-            <span className="text-orange-400 border-b-2 border-orange-400">Home</span>
-            <span className="hover:text-orange-400 cursor-pointer">Services</span>
-            <span className="hover:text-orange-400 cursor-pointer">Contact</span>
-          </nav>
           <h1 className="text-5xl md:text-6xl font-bold text-center leading-tight mb-4 drop-shadow-lg">
             Custom Websites for
             <br />
