@@ -1,11 +1,85 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 export default function ContactPage() {
+  useEffect(() => {
+    const canvas = document.getElementById('matrix-canvas') as HTMLCanvasElement | null;
+    if (!canvas) {
+      return;
+    }
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+      return;
+    }
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const letters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const fontSize = 18;
+    const columns = Math.floor(width / fontSize);
+    const drops = Array.from({ length: columns }, () => 1);
+
+    function draw() {
+      if (!ctx) {
+        return;
+      }
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+      ctx.fillRect(0, 0, width, height);
+      ctx.font = `${fontSize}px monospace`;
+      ctx.shadowColor = '#00ff41';
+      ctx.shadowBlur = 8;
+      for (let i = 0; i < drops.length; i++) {
+        const text = String(letters[Math.floor(Math.random() * letters.length)]);
+        ctx.fillStyle = '#00ff41';
+        ctx.fillText(text, i * fontSize, (drops[i] ?? 0) * fontSize);
+        if (Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i] = (drops[i] ?? 0) + 1;
+      }
+      ctx.shadowBlur = 0;
+    }
+
+    let animationFrameId: number;
+    let frame = 0;
+    function animate() {
+      frame++;
+      if (frame % 2 === 0) {
+        draw();
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    }
+    animate();
+
+    function handleResize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      if (!canvas) {
+        return;
+      }
+      canvas.width = width;
+      canvas.height = height;
+    }
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <div className="bg-black min-h-screen w-full text-white font-serif">
+    <div className="bg-black min-h-screen w-full text-white font-serif relative overflow-hidden">
+      {/* Matrix Rain Canvas */}
+      <canvas id="matrix-canvas" className="fixed inset-0 w-full h-full z-0 pointer-events-none" />
+      {/* Dim Overlay */}
+      <div className="fixed inset-0 w-full h-full z-10 pointer-events-none bg-black/70" />
       {/* Sticky Navigation Bar */}
-      <nav className="sticky top-0 z-30 w-full bg-black bg-opacity-90 border-b border-gray-800">
+      <nav className="sticky top-0 z-20 w-full bg-black bg-opacity-90 border-b border-gray-800">
         <div className="max-w-6xl mx-auto flex items-center justify-center py-4 relative">
           <Image
             src="/assets/images/computer logo final (maybe).png"
@@ -23,7 +97,7 @@ export default function ContactPage() {
         </div>
       </nav>
       {/* Contact Forms */}
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 py-16 px-4">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 py-16 px-4 relative z-20">
         {/* Email Form */}
         <form className="flex-1 bg-gray-900 rounded-lg p-8 shadow-lg flex flex-col" style={{ minWidth: 0 }}>
           <h2 className="text-2xl font-bold mb-6 text-orange-400">Send an Email</h2>
