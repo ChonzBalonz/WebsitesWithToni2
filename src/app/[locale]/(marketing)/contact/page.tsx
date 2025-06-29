@@ -1,94 +1,12 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
-
-  useEffect(() => {
-    const canvas = document.getElementById('matrix-canvas') as HTMLCanvasElement;
-    if (!canvas) {
-      return;
-    }
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) {
-      return;
-    }
-
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-
-    const matrix = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}';
-    const matrixArray = matrix.split('');
-
-    const fontSize = 10;
-    const columns = width / fontSize;
-    const drops: number[] = [];
-
-    for (let x = 0; x < columns; x++) {
-      drops[x] = 1;
-    }
-
-    let frame = 0;
-    let animationFrameId: number;
-
-    function draw() {
-      if (!ctx) {
-        return;
-      }
-
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
-      ctx.fillRect(0, 0, width, height);
-
-      ctx.fillStyle = '#0F0';
-      ctx.font = `${fontSize}px monospace`;
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-        if (text && drops[i] !== undefined) {
-          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-          if (drops[i] * fontSize > height && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-          if (drops[i] !== undefined) {
-            drops[i]++;
-          }
-        }
-      }
-    }
-
-    function animate() {
-      frame++;
-      if (frame % 2 === 0) {
-        draw();
-      }
-      animationFrameId = requestAnimationFrame(animate);
-    }
-    animate();
-
-    function handleResize() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      if (!canvas) {
-        return;
-      }
-      canvas.width = width;
-      canvas.height = height;
-    }
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -134,8 +52,8 @@ export default function ContactPage() {
 
   return (
     <div className="bg-black min-h-screen w-full text-white font-serif relative overflow-hidden">
-      {/* Matrix Rain Canvas */}
-      <canvas id="matrix-canvas" className="fixed inset-0 w-full h-full z-0 pointer-events-none" />
+      {/* Animated Background */}
+      <div className="fixed inset-0 w-full h-full z-0 pointer-events-none bg-gradient-to-br from-gray-900 via-black to-gray-900 animate-pulse" />
       {/* Dim Overlay */}
       <div className="fixed inset-0 w-full h-full z-10 pointer-events-none bg-black/70" />
 
