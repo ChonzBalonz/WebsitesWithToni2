@@ -1,140 +1,52 @@
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Sponsors } from '@/components/Sponsors';
-
-type IIndexProps = {
-  params: Promise<{ locale: string }>;
-};
-
-export async function generateMetadata(props: IIndexProps) {
-  const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: 'Index',
-  });
-
-  return {
-    title: t('meta_title'),
-    description: t('meta_description'),
-  };
-}
-
-export default async function Index(props: IIndexProps) {
-  const { locale } = await props.params;
-  setRequestLocale(locale);
-  const t = await getTranslations({
-    locale,
-    namespace: 'Index',
-  });
-
+export default function HomePage() {
   return (
-    <>
-      <p>
-        {`Follow `}
-        <a
-          className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-          href="https://twitter.com/ixartz"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          @Ixartz on Twitter
-        </a>
-        {` for updates and more information about the boilerplate.`}
-      </p>
-      <h2 className="mt-5 text-2xl font-bold">
-        Boilerplate Code for Your Next.js Project with Tailwind CSS
-      </h2>
-      <p className="text-base">
-        Next.js Boilerplate is a developer-friendly starter code for Next.js projects, built with Tailwind CSS and TypeScript.
-        {' '}
-        <span role="img" aria-label="zap">
-          ⚡️
-        </span>
-        {' '}
-        Designed with developer experience in mind, it includes:
-      </p>
-      <ul className="mt-3 text-base">
-        <li>🚀 Next.js with App Router support</li>
-        <li>🔥 TypeScript for type checking</li>
-        <li>💎 Tailwind CSS integration</li>
-        <li>
-          🔒 Authentication with
-          {' '}
-          <a
-            className="font-bold text-blue-700 hover:border-b-2 hover:border-blue-700"
-            href="https://clerk.com?utm_source=github&amp;utm_medium=sponsorship&amp;utm_campaign=nextjs-boilerplate"
-          >
-            Clerk
-          </a>
-          {' '}
-          (includes passwordless, social, and multi-factor auth)
-        </li>
-        <li>📦 ORM with DrizzleORM (PostgreSQL, SQLite, MySQL support)</li>
-        <li>
-          💽 Dev database with PGlite and production with
-          {' '}
-          <a
-            className="font-bold text-blue-700 hover:border-b-2 hover:border-blue-700"
-            href="https://www.prisma.io/?via=nextjsindex"
-          >
-            Prisma PostgreSQL
-          </a>
-        </li>
-        <li>
-          🌐 Multi-language support (i18n) with next-intl and
-          {' '}
-          <a
-            className="font-bold text-blue-700 hover:border-b-2 hover:border-blue-700"
-            href="https://l.crowdin.com/next-js"
-          >
-            Crowdin
-          </a>
-        </li>
-        <li>🔴 Form handling (React Hook Form) and validation (Zod)</li>
-        <li>📏 Linting and formatting (ESLint, Prettier)</li>
-        <li>🦊 Git hooks and commit linting (Husky, Commitlint)</li>
-        <li>🦺 Testing suite (Vitest, React Testing Library, Playwright)</li>
-        <li>🎉 Storybook for UI development</li>
-        <li>
-          🐰 AI-powered code reviews with
-          {' '}
-          <a
-            className="font-bold text-blue-700 hover:border-b-2 hover:border-blue-700"
-            href="https://www.coderabbit.ai?utm_source=next_js_starter&utm_medium=github&utm_campaign=next_js_starter_oss_2025"
-          >
-            CodeRabbit
-          </a>
-        </li>
-        <li>
-          🚨 Error monitoring (
-          <a
-            className="font-bold text-blue-700 hover:border-b-2 hover:border-blue-700"
-            href="https://sentry.io/for/nextjs/?utm_source=github&amp;utm_medium=paid-community&amp;utm_campaign=general-fy25q1-nextjs&amp;utm_content=github-banner-nextjsboilerplate-logo"
-          >
-            Sentry
-          </a>
-          ) and logging (Pino.js)
-        </li>
-        <li>🖥️ Monitoring as Code (Checkly)</li>
-        <li>
-          🔐 Security and bot protection (
-          <a
-            className="font-bold text-blue-700 hover:border-b-2 hover:border-blue-700"
-            href="https://launch.arcjet.com/Q6eLbRE"
-          >
-            Arcjet
-          </a>
-          )
-        </li>
-        <li>🤖 SEO optimization (metadata, JSON-LD, Open Graph tags)</li>
-        <li>⚙️ Development tools (VSCode config, bundler analyzer, changelog generation)</li>
-      </ul>
-      <p className="text-base">
-        Our sponsors&apos; exceptional support has made this project possible.
-        Their services integrate seamlessly with the boilerplate, and we
-        recommend trying them out.
-      </p>
-      <h2 className="mt-5 text-2xl font-bold">{t('sponsors_title')}</h2>
-      <Sponsors />
-    </>
+    <div className="bg-black min-h-screen w-full text-white font-serif">
+      {/* Header Section */}
+      <div className="relative flex flex-col items-center justify-center min-h-[60vh] bg-black overflow-hidden">
+        <video
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src="/assets/videos/CodingHeroVIDEO.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+        <div className="absolute inset-0 bg-black/60 z-10" />
+        <div className="relative z-20 flex flex-col items-center pt-12 pb-8">
+          <img src="/assets/images/arcjet-light.svg" alt="Logo" className="w-24 h-24 mb-4" />
+          <nav className="flex space-x-8 mb-8 text-lg font-medium">
+            <span className="text-orange-400 border-b-2 border-orange-400">Home</span>
+            <span className="hover:text-orange-400 cursor-pointer">Services</span>
+            <span className="hover:text-orange-400 cursor-pointer">Contact</span>
+          </nav>
+          <h1 className="text-5xl md:text-6xl font-bold text-center leading-tight mb-4 drop-shadow-lg">
+            Custom Websites for
+            <br />
+            Small Businesses
+          </h1>
+          <p className="text-lg text-center mb-6 max-w-xl">Tailored solutions to elevate your online presence.</p>
+          <button className="bg-black/80 hover:bg-black text-white px-8 py-3 rounded-full text-lg font-semibold transition mb-4">Get Quote</button>
+          <div className="flex justify-center mt-2">
+            <span className="text-2xl">★★★★★</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Section: Crafting Unique Websites for You */}
+      <section className="py-16 flex flex-col items-center min-h-[40vh]">
+        <img src="/assets/images/arcjet-light.svg" alt="Logo" className="w-20 h-20 mb-4" />
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">Crafting Unique Websites for You</h2>
+        <div className="flex flex-col md:flex-row justify-center gap-12 w-full max-w-6xl mb-12">
+          <div className="flex-1 text-center md:text-left">
+            <h3 className="text-2xl font-bold mb-2">Your Vision, Our Expertise</h3>
+            <p className="text-lg">At Websites With Toni, we specialize in creating tailored websites for small businesses, ensuring your online presence reflects your brand's identity and attracts loyal customers through intuitive design and user-friendly navigation.</p>
+          </div>
+          <div className="flex-1 text-center md:text-left">
+            <h3 className="text-2xl font-bold mb-2">Empowering Small Businesses Online</h3>
+            <p className="text-lg">We understand the unique needs of each business, whether a local shop or a small business, and provide solutions from simple landing pages to fully functional sites that drive results.</p>
+          </div>
+        </div>
+      </section>
+    </div>
   );
-};
+}
