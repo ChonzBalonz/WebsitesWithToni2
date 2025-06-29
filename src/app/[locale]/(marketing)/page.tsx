@@ -1,10 +1,19 @@
+import Image from 'next/image';
+
 export default function HomePage() {
   return (
     <div className="bg-black min-h-screen w-full text-white font-serif">
       {/* Sticky Navigation Bar */}
       <nav className="sticky top-0 z-30 w-full bg-black bg-opacity-90 border-b border-gray-800">
         <div className="max-w-6xl mx-auto flex items-center justify-center py-4 relative">
-          <img src="/assets/images/computer logo final (maybe).png" alt="Logo" className="absolute left-0 h-10 w-auto ml-4" />
+          <Image
+            src="/assets/images/computer logo final (maybe).png"
+            alt="Logo"
+            height={40}
+            width={40}
+            className="absolute left-0 h-10 w-auto ml-4"
+            priority
+          />
           <ul className="flex space-x-8 text-lg font-medium mx-auto">
             <li><span className="text-orange-400 border-b-2 border-orange-400">Home</span></li>
             <li><span className="hover:text-orange-400 cursor-pointer">Services</span></li>
