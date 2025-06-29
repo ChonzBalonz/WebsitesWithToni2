@@ -9,47 +9,61 @@ export default function ContactPage() {
   const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
-    const canvas = document.getElementById('matrix-canvas') as HTMLCanvasElement | null;
+    const canvas = document.getElementById('matrix-canvas') as HTMLCanvasElement;
     if (!canvas) {
       return;
     }
+
     const ctx = canvas.getContext('2d');
     if (!ctx) {
       return;
     }
+
     let width = window.innerWidth;
     let height = window.innerHeight;
     canvas.width = width;
     canvas.height = height;
 
-    const letters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    const fontSize = 18;
-    const columns = Math.floor(width / fontSize);
-    const drops = Array.from({ length: columns }, () => 1);
+    const matrix = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}';
+    const matrixArray = matrix.split('');
+
+    const fontSize = 10;
+    const columns = width / fontSize;
+    const drops: number[] = [];
+
+    for (let x = 0; x < columns; x++) {
+      drops[x] = 1;
+    }
+
+    let frame = 0;
+    let animationFrameId: number;
 
     function draw() {
       if (!ctx) {
         return;
       }
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
       ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = '#0F0';
       ctx.font = `${fontSize}px monospace`;
-      ctx.shadowColor = '#00ff41';
-      ctx.shadowBlur = 8;
+
       for (let i = 0; i < drops.length; i++) {
-        const text = String(letters[Math.floor(Math.random() * letters.length)]);
-        ctx.fillStyle = '#00ff41';
-        ctx.fillText(text, i * fontSize, (drops[i] ?? 0) * fontSize);
-        if (Math.random() > 0.975) {
-          drops[i] = 0;
+        const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+        if (text && drops[i] !== undefined) {
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+          if (drops[i] * fontSize > height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          if (drops[i] !== undefined) {
+            drops[i]++;
+          }
         }
-        drops[i] = (drops[i] ?? 0) + 1;
       }
-      ctx.shadowBlur = 0;
     }
 
-    let animationFrameId: number;
-    let frame = 0;
     function animate() {
       frame++;
       if (frame % 2 === 0) {
@@ -127,16 +141,16 @@ export default function ContactPage() {
 
       {/* Sticky Navigation Bar */}
       <nav className="sticky top-0 z-20 w-full bg-black bg-opacity-90 border-b border-gray-800">
-        <div className="max-w-6xl mx-auto flex items-center justify-center py-4 relative">
+        <div className="max-w-6xl mx-auto flex items-center justify-center py-4 relative px-4">
           <Image
             src="/assets/images/computer logo final (maybe).png"
             alt="Logo"
             height={40}
             width={40}
-            className="absolute left-0 h-10 w-auto ml-4"
+            className="absolute left-4 h-10 w-auto"
             priority
           />
-          <ul className="flex space-x-8 text-lg font-medium mx-auto">
+          <ul className="flex space-x-4 md:space-x-8 text-base md:text-lg font-medium mx-auto">
             <li><Link href="/" className="hover:text-orange-400 cursor-pointer">Home</Link></li>
             <li><Link href="/services" className="hover:text-orange-400 cursor-pointer">Services</Link></li>
             <li><Link href="/portfolio" className="hover:text-orange-400 cursor-pointer">Portfolio</Link></li>
@@ -146,93 +160,93 @@ export default function ContactPage() {
       </nav>
 
       {/* Header Section */}
-      <div className="relative z-20 text-center py-16">
-        <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Let's Build Something Amazing</h1>
-          <p className="text-xl text-gray-300 mb-8">Get your free consultation and quote. No pressure, just honest advice about your website needs.</p>
+      <div className="relative z-20 text-center py-8 md:py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Let's Build Something Amazing</h1>
+          <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8">Get your free consultation and quote. No pressure, just honest advice about your website needs.</p>
 
           {/* Quick Benefits */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
             <div className="text-center">
-              <div className="text-3xl mb-2">⚡</div>
-              <h3 className="font-bold mb-2">Fast Response</h3>
-              <p className="text-sm text-gray-300">Get a response within 24 hours</p>
+              <div className="text-2xl md:text-3xl mb-2">⚡</div>
+              <h3 className="font-bold mb-2 text-sm md:text-base">Fast Response</h3>
+              <p className="text-xs md:text-sm text-gray-300">Get a response within 24 hours</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl mb-2">💰</div>
-              <h3 className="font-bold mb-2">Free Quote</h3>
-              <p className="text-sm text-gray-300">No hidden fees or surprises</p>
+              <div className="text-2xl md:text-3xl mb-2">💰</div>
+              <h3 className="font-bold mb-2 text-sm md:text-base">Free Quote</h3>
+              <p className="text-xs md:text-sm text-gray-300">No hidden fees or surprises</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl mb-2">🎯</div>
-              <h3 className="font-bold mb-2">Custom Solution</h3>
-              <p className="text-sm text-gray-300">Tailored to your business needs</p>
+              <div className="text-2xl md:text-3xl mb-2">🎯</div>
+              <h3 className="font-bold mb-2 text-sm md:text-base">Custom Solution</h3>
+              <p className="text-xs md:text-sm text-gray-300">Tailored to your business needs</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Contact Forms */}
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 py-16 px-4 relative z-20">
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 md:gap-12 py-8 md:py-16 px-4 relative z-20">
         {/* Email Form */}
         <form
           onSubmit={handleSubmit}
-          className="flex-1 rounded-lg p-8 shadow-lg flex flex-col backdrop-blur-sm"
+          className="flex-1 rounded-lg p-6 md:p-8 shadow-lg flex flex-col backdrop-blur-sm"
           style={{
             minWidth: 0,
             backgroundColor: 'rgba(10, 10, 25, 0.85)',
             boxShadow: '0 0 10px rgba(0, 255, 0, 0.3)',
           }}
         >
-          <h2 className="text-2xl font-bold mb-6 text-orange-400">Get Your Free Quote</h2>
-          <p className="text-gray-300 mb-6">Tell us about your project and we'll provide a custom quote within 24 hours.</p>
+          <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-orange-400">Get Your Free Quote</h2>
+          <p className="text-gray-300 mb-4 md:mb-6 text-sm md:text-base">Tell us about your project and we'll provide a custom quote within 24 hours.</p>
 
           {/* Status Messages */}
           {submitStatus === 'success' && (
-            <div className="mb-6 p-4 bg-green-900 border border-green-400 rounded-lg text-green-300">
+            <div className="mb-4 md:mb-6 p-3 md:p-4 bg-green-900 border border-green-400 rounded-lg text-green-300 text-sm md:text-base">
               {submitMessage}
             </div>
           )}
           {submitStatus === 'error' && (
-            <div className="mb-6 p-4 bg-red-900 border border-red-400 rounded-lg text-red-300">
+            <div className="mb-4 md:mb-6 p-3 md:p-4 bg-red-900 border border-red-400 rounded-lg text-red-300 text-sm md:text-base">
               {submitMessage}
             </div>
           )}
 
-          <label className="mb-2 text-sm font-semibold" htmlFor="email-name">Full Name *</label>
+          <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-name">Full Name *</label>
           <input
             id="email-name"
             name="name"
             type="text"
-            className="mb-4 p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none"
+            className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
             placeholder="Your full name"
             required
           />
 
-          <label className="mb-2 text-sm font-semibold" htmlFor="email-address">Email Address *</label>
+          <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-address">Email Address *</label>
           <input
             id="email-address"
             name="email"
             type="email"
-            className="mb-4 p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none"
+            className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
             placeholder="your@email.com"
             required
           />
 
-          <label className="mb-2 text-sm font-semibold" htmlFor="email-phone">Phone Number</label>
+          <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-phone">Phone Number</label>
           <input
             id="email-phone"
             name="phone"
             type="tel"
-            className="mb-4 p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none"
+            className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
             placeholder="(555) 555-5555"
           />
 
-          <label className="mb-2 text-sm font-semibold" htmlFor="project-type">Project Type *</label>
+          <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="project-type">Project Type *</label>
           <select
             id="project-type"
             name="projectType"
-            className="mb-4 p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none"
+            className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
             required
           >
             <option value="">Select project type</option>
@@ -245,11 +259,11 @@ export default function ContactPage() {
             <option value="other">Other</option>
           </select>
 
-          <label className="mb-2 text-sm font-semibold" htmlFor="budget">Budget Range</label>
+          <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="budget">Budget Range</label>
           <select
             id="budget"
             name="budget"
-            className="mb-4 p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none"
+            className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
           >
             <option value="">Select budget range</option>
             <option value="under-500">Under $500</option>
@@ -258,12 +272,12 @@ export default function ContactPage() {
             <option value="1000-1300">$1,000 - $1,300</option>
           </select>
 
-          <label className="mb-2 text-sm font-semibold" htmlFor="email-message">Project Details *</label>
+          <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-message">Project Details *</label>
           <textarea
             id="email-message"
             name="message"
-            className="mb-6 p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none"
-            rows={5}
+            className="mb-4 md:mb-6 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
+            rows={4}
             placeholder="Tell us about your project, goals, and any specific requirements..."
             required
           />
@@ -271,7 +285,7 @@ export default function ContactPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="bg-orange-400 hover:bg-orange-500 disabled:bg-gray-600 text-black font-bold py-4 rounded-lg transition text-lg"
+            className="bg-orange-400 hover:bg-orange-500 disabled:bg-gray-600 text-black font-bold py-3 md:py-4 rounded-lg transition text-base md:text-lg"
           >
             {isSubmitting ? 'Sending...' : 'Get Free Quote'}
           </button>
@@ -282,31 +296,31 @@ export default function ContactPage() {
         </form>
 
         {/* Contact Info & Testimonials */}
-        <div className="flex-1 space-y-8">
+        <div className="flex-1 space-y-6 md:space-y-8">
           {/* Quick Contact */}
           <div
-            className="rounded-lg p-8 shadow-lg backdrop-blur-sm"
+            className="rounded-lg p-6 md:p-8 shadow-lg backdrop-blur-sm"
             style={{
               backgroundColor: 'rgba(10, 10, 25, 0.85)',
               boxShadow: '0 0 10px rgba(0, 255, 0, 0.3)',
             }}
           >
-            <h2 className="text-2xl font-bold mb-6 text-orange-400">Quick Contact</h2>
-            <div className="space-y-4">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-orange-400">Quick Contact</h2>
+            <div className="space-y-3 md:space-y-4">
               <div className="flex items-center">
-                <div className="text-2xl mr-4">📧</div>
+                <div className="text-xl md:text-2xl mr-3 md:mr-4">📧</div>
                 <div>
-                  <p className="font-semibold">Email</p>
-                  <a href="mailto:anthony3303@outlook.com" className="text-orange-400 hover:text-orange-300">
+                  <p className="font-semibold text-sm md:text-base">Email</p>
+                  <a href="mailto:anthony3303@outlook.com" className="text-orange-400 hover:text-orange-300 text-sm md:text-base">
                     anthony3303@outlook.com
                   </a>
                 </div>
               </div>
               <div className="flex items-center">
-                <div className="text-2xl mr-4">📱</div>
+                <div className="text-xl md:text-2xl mr-3 md:mr-4">📱</div>
                 <div>
-                  <p className="font-semibold">Phone</p>
-                  <a href="tel:+16305406506" className="text-orange-400 hover:text-orange-300">
+                  <p className="font-semibold text-sm md:text-base">Phone</p>
+                  <a href="tel:+16305406506" className="text-orange-400 hover:text-orange-300 text-sm md:text-base">
                     (630) 540-6506
                   </a>
                 </div>
@@ -316,55 +330,54 @@ export default function ContactPage() {
 
           {/* Testimonials */}
           <div
-            className="rounded-lg p-8 shadow-lg backdrop-blur-sm"
+            className="rounded-lg p-6 md:p-8 shadow-lg backdrop-blur-sm"
             style={{
               backgroundColor: 'rgba(10, 10, 25, 0.85)',
               boxShadow: '0 0 10px rgba(0, 255, 0, 0.3)',
             }}
           >
-            <h2 className="text-2xl font-bold mb-6 text-orange-400">What Our Clients Say</h2>
-            <div className="space-y-6">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-orange-400">What Clients Say</h2>
+            <div className="space-y-4 md:space-y-6">
               <div className="border-l-4 border-orange-400 pl-4">
-                <p className="text-gray-300 mb-2">"Toni delivered exactly what we needed. Our new website has increased our online sales by 40%!"</p>
-                <p className="font-semibold text-sm">- Lupe, Beauty Empress</p>
+                <p className="text-sm md:text-base text-gray-300 mb-2">"Toni delivered exactly what we needed. Our new website has increased our online sales by 40%!"</p>
+                <p className="text-xs md:text-sm font-semibold text-orange-400">- Sarah Johnson, Beauty Empress</p>
               </div>
               <div className="border-l-4 border-orange-400 pl-4">
-                <p className="text-gray-300 mb-2">"Professional, responsive, and affordable. Highly recommend for any small business."</p>
-                <p className="font-semibold text-sm">- Angel, Corta Pelos</p>
+                <p className="text-sm md:text-base text-gray-300 mb-2">"Professional, responsive, and affordable. Highly recommend for any small business."</p>
+                <p className="text-xs md:text-sm font-semibold text-orange-400">- Mike Rodriguez, Corta Pelos</p>
               </div>
-
             </div>
           </div>
 
           {/* Why Choose Us */}
           <div
-            className="rounded-lg p-8 shadow-lg backdrop-blur-sm"
+            className="rounded-lg p-6 md:p-8 shadow-lg backdrop-blur-sm"
             style={{
               backgroundColor: 'rgba(10, 10, 25, 0.85)',
               boxShadow: '0 0 10px rgba(0, 255, 0, 0.3)',
             }}
           >
-            <h2 className="text-2xl font-bold mb-6 text-orange-400">Why Choose Us</h2>
-            <div className="space-y-3">
-              <div className="flex items-center">
-                <span className="text-orange-400 mr-3">✓</span>
-                <span>50+ successful projects completed</span>
+            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-orange-400">Why Choose Us</h2>
+            <div className="space-y-3 md:space-y-4">
+              <div className="flex items-start">
+                <span className="text-orange-400 mr-2 mt-1">✓</span>
+                <p className="text-sm md:text-base text-gray-300">Fast delivery (2-3 weeks)</p>
               </div>
-              <div className="flex items-center">
-                <span className="text-orange-400 mr-3">✓</span>
-                <span>2-3 week delivery timeline</span>
+              <div className="flex items-start">
+                <span className="text-orange-400 mr-2 mt-1">✓</span>
+                <p className="text-sm md:text-base text-gray-300">Mobile-responsive design</p>
               </div>
-              <div className="flex items-center">
-                <span className="text-orange-400 mr-3">✓</span>
-                <span>Lifetime support included</span>
+              <div className="flex items-start">
+                <span className="text-orange-400 mr-2 mt-1">✓</span>
+                <p className="text-sm md:text-base text-gray-300">SEO optimized</p>
               </div>
-              <div className="flex items-center">
-                <span className="text-orange-400 mr-3">✓</span>
-                <span>Mobile-first responsive design</span>
+              <div className="flex items-start">
+                <span className="text-orange-400 mr-2 mt-1">✓</span>
+                <p className="text-sm md:text-base text-gray-300">Lifetime support included</p>
               </div>
-              <div className="flex items-center">
-                <span className="text-orange-400 mr-3">✓</span>
-                <span>SEO optimized for better rankings</span>
+              <div className="flex items-start">
+                <span className="text-orange-400 mr-2 mt-1">✓</span>
+                <p className="text-sm md:text-base text-gray-300">Free revisions</p>
               </div>
             </div>
           </div>
