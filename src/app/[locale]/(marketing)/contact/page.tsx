@@ -164,17 +164,16 @@ export default function ContactPage() {
                   <option value="seo">SEO Services</option>
                   <option value="other">Other</option>
                 </select>
-                <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="budget">Budget Range</label>
+                <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="budget">Plan Options</label>
                 <select
                   id="budget"
                   name="budget"
                   className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
                 >
-                  <option value="">Select budget range</option>
-                  <option value="under-500">Under $500</option>
-                  <option value="500-800">$500 - $800</option>
-                  <option value="800-1000">$800 - $1,000</option>
-                  <option value="1000-1300">$1,000 - $1,300</option>
+                  <option value="">Select plan</option>
+                  <option value="basic">Basic ($400)</option>
+                  <option value="professional">Professional ($1,000)</option>
+                  <option value="custom">Custom (Get Quote)</option>
                 </select>
                 <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-message">Project Details *</label>
                 <textarea

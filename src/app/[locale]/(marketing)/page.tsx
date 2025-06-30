@@ -160,7 +160,7 @@ export default function HomePage() {
           <p className="text-lg md:text-xl text-center mb-6 max-w-2xl">Transform your business with a professional website that converts visitors into customers. Starting at $400.</p>
 
           {/* Multiple CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-6 w-full max-w-md sm:max-w-none">
+          <div className="flex flex-col sm:flex-row gap-4 mb-6 w-full max-w-md sm:max-w-none justify-center items-center">
             <Link href="/contact" className="bg-orange-400 hover:bg-orange-500 text-black px-6 md:px-8 py-3 rounded-full text-base md:text-lg font-semibold transition text-center">
               Get Free Quote
             </Link>
