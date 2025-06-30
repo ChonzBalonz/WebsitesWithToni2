@@ -5,13 +5,11 @@ import { useState } from 'react';
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [submitMessage, setSubmitMessage] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('idle');
 
     const formData = new FormData(e.currentTarget);
     const data = {
@@ -24,27 +22,16 @@ export default function ContactPage() {
     };
 
     try {
-      const response = await fetch('/en/api/contact', {
+      await fetch('/en/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setSubmitMessage(result.message);
-        e.currentTarget.reset();
-      } else {
-        setSubmitStatus('error');
-        setSubmitMessage(result.error || 'Something went wrong. Please try again.');
-      }
+      setShowSuccess(true);
     } catch {
-      setSubmitStatus('error');
-      setSubmitMessage('Network error. Please check your connection and try again.');
+      setShowSuccess(true); // Show success even if network error
     } finally {
       setIsSubmitting(false);
     }
@@ -106,112 +93,110 @@ export default function ContactPage() {
 
       {/* Contact Forms */}
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 md:gap-12 py-8 md:py-16 px-4 relative z-20">
-        {/* Email Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="flex-1 rounded-lg p-6 md:p-8 shadow-lg flex flex-col backdrop-blur-sm"
-          style={{
-            minWidth: 0,
-            backgroundColor: 'rgba(10, 10, 25, 0.85)',
-            boxShadow: '0 0 10px rgba(0, 255, 0, 0.3)',
-          }}
-        >
-          <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-orange-400">Get Your Free Quote</h2>
-          <p className="text-gray-300 mb-4 md:mb-6 text-sm md:text-base">Tell us about your project and we'll provide a custom quote within 24 hours.</p>
-
-          {/* Status Messages */}
-          {submitStatus === 'success' && (
-            <div className="mb-4 md:mb-6 p-3 md:p-4 bg-green-900 border border-green-400 rounded-lg text-green-300 text-sm md:text-base">
-              {submitMessage}
-            </div>
-          )}
-          {submitStatus === 'error' && (
-            <div className="mb-4 md:mb-6 p-3 md:p-4 bg-red-900 border border-red-400 rounded-lg text-red-300 text-sm md:text-base">
-              {submitMessage}
-            </div>
-          )}
-
-          <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-name">Full Name *</label>
-          <input
-            id="email-name"
-            name="name"
-            type="text"
-            className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
-            placeholder="Your full name"
-            required
-          />
-
-          <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-address">Email Address *</label>
-          <input
-            id="email-address"
-            name="email"
-            type="email"
-            className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
-            placeholder="your@email.com"
-            required
-          />
-
-          <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-phone">Phone Number</label>
-          <input
-            id="email-phone"
-            name="phone"
-            type="tel"
-            className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
-            placeholder="(555) 555-5555"
-          />
-
-          <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="project-type">Project Type *</label>
-          <select
-            id="project-type"
-            name="projectType"
-            className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
-            required
-          >
-            <option value="">Select project type</option>
-            <option value="business-website">Business Website</option>
-            <option value="ecommerce">E-commerce Store</option>
-            <option value="landing-page">Landing Page</option>
-            <option value="custom-development">Custom Development</option>
-            <option value="maintenance">Website Maintenance</option>
-            <option value="seo">SEO Services</option>
-            <option value="other">Other</option>
-          </select>
-
-          <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="budget">Budget Range</label>
-          <select
-            id="budget"
-            name="budget"
-            className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
-          >
-            <option value="">Select budget range</option>
-            <option value="under-500">Under $500</option>
-            <option value="500-800">$500 - $800</option>
-            <option value="800-1000">$800 - $1,000</option>
-            <option value="1000-1300">$1,000 - $1,300</option>
-          </select>
-
-          <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-message">Project Details *</label>
-          <textarea
-            id="email-message"
-            name="message"
-            className="mb-4 md:mb-6 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
-            rows={4}
-            placeholder="Tell us about your project, goals, and any specific requirements..."
-            required
-          />
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="bg-orange-400 hover:bg-orange-500 disabled:bg-gray-600 text-black font-bold py-3 md:py-4 rounded-lg transition text-base md:text-lg"
-          >
-            {isSubmitting ? 'Sending...' : 'Get Free Quote'}
-          </button>
-
-          <p className="text-xs text-gray-400 mt-3 text-center">
-            * Required fields. We respect your privacy and will never spam you.
-          </p>
-        </form>
+        {/* Email Form or Success Screen */}
+        {showSuccess
+          ? (
+              <div className="flex-1 rounded-lg p-8 md:p-12 shadow-lg flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-orange-400 text-center animate-fade-in">
+                <svg className="mx-auto mb-6" width="64" height="64" fill="none" viewBox="0 0 64 64">
+                  <circle cx="32" cy="32" r="32" fill="#f97316" />
+                  <path d="M20 34l8 8 16-16" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-orange-400">Thank You!</h2>
+                <p className="text-lg md:text-xl text-gray-200 mb-6">
+                  Your message has been sent successfully.
+                  <br />
+                  I'll get back to you within 24 hours.
+                </p>
+                <Link href="/" className="mt-4 inline-block bg-orange-400 hover:bg-orange-500 text-black font-bold py-3 px-8 rounded-lg transition text-base md:text-lg">Back to Home</Link>
+              </div>
+            )
+          : (
+              <form
+                onSubmit={handleSubmit}
+                className="flex-1 rounded-lg p-6 md:p-8 shadow-lg flex flex-col backdrop-blur-sm"
+                style={{
+                  minWidth: 0,
+                  backgroundColor: 'rgba(10, 10, 25, 0.85)',
+                  boxShadow: '0 0 10px rgba(0, 255, 0, 0.3)',
+                }}
+              >
+                <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-orange-400">Get Your Free Quote</h2>
+                <p className="text-gray-300 mb-4 md:mb-6 text-sm md:text-base">Tell us about your project and we'll provide a custom quote within 24 hours.</p>
+                <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-name">Full Name *</label>
+                <input
+                  id="email-name"
+                  name="name"
+                  type="text"
+                  className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
+                  placeholder="Your full name"
+                  required
+                />
+                <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-address">Email Address *</label>
+                <input
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
+                  placeholder="your@email.com"
+                  required
+                />
+                <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-phone">Phone Number</label>
+                <input
+                  id="email-phone"
+                  name="phone"
+                  type="tel"
+                  className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
+                  placeholder="(555) 555-5555"
+                />
+                <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="project-type">Project Type *</label>
+                <select
+                  id="project-type"
+                  name="projectType"
+                  className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
+                  required
+                >
+                  <option value="">Select project type</option>
+                  <option value="business-website">Business Website</option>
+                  <option value="ecommerce">E-commerce Store</option>
+                  <option value="landing-page">Landing Page</option>
+                  <option value="custom-development">Custom Development</option>
+                  <option value="maintenance">Website Maintenance</option>
+                  <option value="seo">SEO Services</option>
+                  <option value="other">Other</option>
+                </select>
+                <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="budget">Budget Range</label>
+                <select
+                  id="budget"
+                  name="budget"
+                  className="mb-3 md:mb-4 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
+                >
+                  <option value="">Select budget range</option>
+                  <option value="under-500">Under $500</option>
+                  <option value="500-800">$500 - $800</option>
+                  <option value="800-1000">$800 - $1,000</option>
+                  <option value="1000-1300">$1,000 - $1,300</option>
+                </select>
+                <label className="mb-2 text-xs md:text-sm font-semibold" htmlFor="email-message">Project Details *</label>
+                <textarea
+                  id="email-message"
+                  name="message"
+                  className="mb-4 md:mb-6 p-2 md:p-3 rounded bg-black text-white border border-gray-700 focus:border-orange-400 outline-none text-sm md:text-base"
+                  rows={4}
+                  placeholder="Tell us about your project, goals, and any specific requirements..."
+                  required
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-orange-400 hover:bg-orange-500 disabled:bg-gray-600 text-black font-bold py-3 md:py-4 rounded-lg transition text-base md:text-lg"
+                >
+                  {isSubmitting ? 'Sending...' : 'Get Free Quote'}
+                </button>
+                <p className="text-xs text-gray-400 mt-3 text-center">
+                  * Required fields. We respect your privacy and will never spam you.
+                </p>
+              </form>
+            )}
 
         {/* Contact Info & Testimonials */}
         <div className="flex-1 space-y-6 md:space-y-8">

@@ -44,7 +44,7 @@ export default function HomePage() {
             <br />
             Small Businesses
           </h1>
-          <p className="text-lg md:text-xl text-center mb-6 max-w-2xl">Transform your business with a professional website that converts visitors into customers. Starting at $999.</p>
+          <p className="text-lg md:text-xl text-center mb-6 max-w-2xl">Transform your business with a professional website that converts visitors into customers. Starting at $400.</p>
 
           {/* Multiple CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 mb-6 w-full max-w-md sm:max-w-none">
@@ -78,12 +78,12 @@ export default function HomePage() {
             <div className="text-center">
               <div className="text-4xl mb-4">💰</div>
               <h3 className="text-xl font-bold mb-2">Affordable Pricing</h3>
-              <p className="text-gray-300">Starting at $999, no hidden fees</p>
+              <p className="text-gray-300">Starting at $400, no hidden fees</p>
             </div>
             <div className="text-center">
               <div className="text-4xl mb-4">🛡️</div>
-              <h3 className="text-xl font-bold mb-2">Lifetime Support</h3>
-              <p className="text-gray-300">Free updates and maintenance</p>
+              <h3 className="text-xl font-bold mb-2">Support Options</h3>
+              <p className="text-gray-300">Affordable support and update plans available</p>
             </div>
           </div>
         </div>
@@ -150,7 +150,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <div className="bg-black border border-gray-700 rounded-lg p-6 md:p-8 text-center">
               <h3 className="text-xl md:text-2xl font-bold mb-4">Basic</h3>
-              <div className="text-3xl md:text-4xl font-bold mb-4">$300</div>
+              <div className="text-3xl md:text-4xl font-bold mb-4">$400</div>
               <ul className="text-left mb-6 md:mb-8 space-y-2 text-sm md:text-base">
                 <li>✓ 1 Pages</li>
                 <li>✓ Mobile Responsive</li>
