@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
 
     // Send email to business only (sandbox mode)
     await resend.emails.send({
-      from: 'Toni Web Development <onboarding@resend.dev>',
+      from: 'Toni Web Development <info@mail.websiteswithtoni.com>',
       to: ['anthony3303@outlook.com'],
       subject: `New Website Inquiry from ${name}`,
       html: `
@@ -41,7 +41,22 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    // Do NOT send confirmation email to client in sandbox mode
+    // Send thank-you email to the user
+    await resend.emails.send({
+      from: 'info@mail.websiteswithtoni.com',
+      to: email,
+      subject: 'Thank you for contacting Websites With Toni!',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #f97316;">Thank You for Reaching Out!</h2>
+          <p>Hi ${name},</p>
+          <p>Thank you for contacting Websites With Toni. We have received your message and will get back to you within 24 hours.</p>
+          <p>If you have any urgent questions, feel free to reply to this email.</p>
+          <br />
+          <p>Best regards,<br />Toni</p>
+        </div>
+      `,
+    });
 
     return NextResponse.json(
       {
