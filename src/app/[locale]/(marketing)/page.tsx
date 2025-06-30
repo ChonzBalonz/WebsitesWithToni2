@@ -1,9 +1,122 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export default function HomePage() {
+  // Modal state
+  const [showModal, setShowModal] = useState(false);
+  const [form, setForm] = useState({ name: '', friendEmail: '', yourEmail: '' });
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowModal(true), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/referral', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error || 'Something went wrong.');
+        return;
+      }
+      setSuccess(true);
+    } catch (err: any) {
+      setError(err?.message || 'Network error.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <div className="bg-black min-h-screen w-full text-white font-serif">
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 px-2">
+          <div className="relative bg-gray-900 rounded-2xl shadow-xl w-full max-w-md mx-auto p-6 md:p-8 animate-fadeIn">
+            <button
+              className="absolute top-3 right-3 text-gray-400 hover:text-orange-400 text-2xl font-bold focus:outline-none"
+              aria-label="Close"
+              onClick={() => setShowModal(false)}
+              type="button"
+            >
+              &times;
+            </button>
+            {!success
+              ? (
+                  <>
+                    <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-orange-400">Refer a Friend, Earn $50!</h2>
+                    <p className="text-base md:text-lg text-center text-gray-200 mb-6">Love your website? Refer another small business! If your friend gets their website made with us, you'll get $50 as a thank you. Reward is only given for successful referrals (when your friend becomes a client).</p>
+                    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        value={form.name}
+                        onChange={handleChange}
+                        required
+                        className="rounded-lg px-4 py-3 bg-black border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-orange-400 transition"
+                      />
+                      <input
+                        type="email"
+                        name="friendEmail"
+                        placeholder="Friend's Email"
+                        value={form.friendEmail}
+                        onChange={handleChange}
+                        required
+                        className="rounded-lg px-4 py-3 bg-black border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-orange-400 transition"
+                      />
+                      <input
+                        type="email"
+                        name="yourEmail"
+                        placeholder="Your Email"
+                        value={form.yourEmail}
+                        onChange={handleChange}
+                        required
+                        className="rounded-lg px-4 py-3 bg-black border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-orange-400 transition"
+                      />
+                      <button
+                        type="submit"
+                        disabled={submitting}
+                        className="bg-orange-400 hover:bg-orange-500 text-black font-semibold rounded-lg py-3 mt-2 transition disabled:opacity-60 disabled:cursor-not-allowed"
+                      >
+                        {submitting ? 'Sending...' : 'Send Referral'}
+                      </button>
+                      {error && (
+                        <p className="text-red-400 text-center mt-2">{error}</p>
+                      )}
+                    </form>
+                  </>
+                )
+              : (
+                  <div className="flex flex-col items-center justify-center min-h-[200px]">
+                    <h3 className="text-2xl font-bold text-orange-400 mb-2">Thanks! We'll be in touch soon.</h3>
+                    <button
+                      className="mt-4 px-6 py-2 bg-black border border-orange-400 text-orange-400 rounded-lg hover:bg-orange-400 hover:text-black font-semibold transition"
+                      onClick={() => setShowModal(false)}
+                    >
+                      Close
+                    </button>
+                  </div>
+                )}
+          </div>
+        </div>
+      )}
       {/* Sticky Navigation Bar */}
       <nav className="sticky top-0 z-30 w-full bg-black bg-opacity-90 border-b border-gray-800">
         <div className="max-w-6xl mx-auto flex items-center justify-center py-4 relative px-4">
@@ -192,6 +305,12 @@ export default function HomePage() {
                 Get Quote
               </Link>
             </div>
+          </div>
+          {/* Down Payment Note */}
+          <div className="max-w-2xl mx-auto mt-6 bg-black bg-opacity-80 border border-orange-400 rounded-lg p-4 text-center">
+            <span className="text-orange-400 font-semibold text-base md:text-lg">
+              A 30% down payment is required for all new clients before project work begins.
+            </span>
           </div>
         </div>
       </section>
