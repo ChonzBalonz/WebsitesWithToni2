@@ -17,8 +17,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send email to business
-    const emailResult = await resend.emails.send({
+    // Send email to business only (sandbox mode)
+    await resend.emails.send({
       from: 'Toni Web Development <onboarding@resend.dev>',
       to: ['anthony3303@outlook.com'],
       subject: `New Website Inquiry from ${name}`,
@@ -41,32 +41,7 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    // Send confirmation email to client
-    await resend.emails.send({
-      from: 'Toni Web Development <onboarding@resend.dev>',
-      to: [email],
-      subject: 'Thank you for your inquiry - Toni Web Development',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #f97316;">Thank you for your inquiry!</h2>
-          <p>Hi ${name},</p>
-          <p>Thank you for reaching out about your website project. I've received your inquiry and will get back to you within 24 hours with a custom quote and next steps.</p>
-          <p><strong>Project Details:</strong></p>
-          <ul>
-            <li>Project Type: ${projectType}</li>
-            <li>Budget Range: ${budget || 'Not specified'}</li>
-          </ul>
-          <p>In the meantime, feel free to check out my portfolio at <a href="https://yourwebsite.com/portfolio" style="color: #f97316;">my portfolio</a> to see examples of my work.</p>
-          <p>Best regards,<br>Toni<br>Web Developer</p>
-          <p style="color: #6b7280; font-size: 14px; margin-top: 20px;">
-            Phone: (630) 540-6506<br>
-            Email: anthony3303@outlook.com
-          </p>
-        </div>
-      `,
-    });
-
-    console.warn('Email sent successfully:', emailResult);
+    // Do NOT send confirmation email to client in sandbox mode
 
     return NextResponse.json(
       {
