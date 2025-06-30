@@ -170,12 +170,12 @@ export default function PortfolioPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Our Success Metrics</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">50+</div>
-              <p className="text-gray-300 text-sm md:text-base">Websites Delivered</p>
+              <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">100%</div>
+              <p className="text-gray-300 text-sm md:text-base">Client Satisfaction</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">98%</div>
-              <p className="text-gray-300 text-sm md:text-base">Client Satisfaction</p>
+              <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">24h</div>
+              <p className="text-gray-300 text-sm md:text-base">Response Time</p>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">2-3</div>
@@ -193,7 +193,7 @@ export default function PortfolioPage() {
       <section className="py-12 md:py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">What Our Clients Say</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div className="bg-gray-900 p-4 md:p-6 rounded-lg border border-gray-700">
               <div className="flex mb-4">
                 <span className="text-2xl text-orange-400">★★★★★</span>
@@ -201,10 +201,10 @@ export default function PortfolioPage() {
               <p className="text-gray-300 mb-4 text-sm md:text-base">"Toni delivered exactly what we needed. Our new website has increased our online sales by 40%!"</p>
               <div className="flex items-center">
                 <div className="w-10 md:w-12 h-10 md:h-12 bg-orange-400 rounded-full flex items-center justify-center text-black font-bold mr-3 text-sm md:text-base">
-                  SJ
+                  L
                 </div>
                 <div>
-                  <p className="font-semibold text-sm md:text-base">Sarah Johnson</p>
+                  <p className="font-semibold text-sm md:text-base">Lupe</p>
                   <p className="text-xs md:text-sm text-gray-400">Beauty Empress</p>
                 </div>
               </div>
@@ -216,26 +216,11 @@ export default function PortfolioPage() {
               <p className="text-gray-300 mb-4 text-sm md:text-base">"Professional, responsive, and affordable. Highly recommend for any small business."</p>
               <div className="flex items-center">
                 <div className="w-10 md:w-12 h-10 md:h-12 bg-orange-400 rounded-full flex items-center justify-center text-black font-bold mr-3 text-sm md:text-base">
-                  MR
+                  A
                 </div>
                 <div>
-                  <p className="font-semibold text-sm md:text-base">Mike Rodriguez</p>
-                  <p className="text-xs md:text-sm text-gray-400">Corta Pelos</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-900 p-4 md:p-6 rounded-lg border border-gray-700">
-              <div className="flex mb-4">
-                <span className="text-2xl text-orange-400">★★★★★</span>
-              </div>
-              <p className="text-gray-300 mb-4 text-sm md:text-base">"The process was smooth from start to finish. Our website looks amazing and works perfectly."</p>
-              <div className="flex items-center">
-                <div className="w-10 md:w-12 h-10 md:h-12 bg-orange-400 rounded-full flex items-center justify-center text-black font-bold mr-3 text-sm md:text-base">
-                  LC
-                </div>
-                <div>
-                  <p className="font-semibold text-sm md:text-base">Lisa Chen</p>
-                  <p className="text-xs md:text-sm text-gray-400">Local Restaurant</p>
+                  <p className="font-semibold text-sm md:text-base">Angel</p>
+                  <p className="text-xs md:text-sm text-gray-400">CortaPelos</p>
                 </div>
               </div>
             </div>

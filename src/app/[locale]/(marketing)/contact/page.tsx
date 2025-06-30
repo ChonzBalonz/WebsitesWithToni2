@@ -258,11 +258,11 @@ export default function ContactPage() {
             <div className="space-y-4 md:space-y-6">
               <div className="border-l-4 border-orange-400 pl-4">
                 <p className="text-sm md:text-base text-gray-300 mb-2">"Toni delivered exactly what we needed. Our new website has increased our online sales by 40%!"</p>
-                <p className="text-xs md:text-sm font-semibold text-orange-400">- Sarah Johnson, Beauty Empress</p>
+                <p className="text-xs md:text-sm font-semibold text-orange-400">- Lupe, Beauty Empress</p>
               </div>
               <div className="border-l-4 border-orange-400 pl-4">
                 <p className="text-sm md:text-base text-gray-300 mb-2">"Professional, responsive, and affordable. Highly recommend for any small business."</p>
-                <p className="text-xs md:text-sm font-semibold text-orange-400">- Mike Rodriguez, Corta Pelos</p>
+                <p className="text-xs md:text-sm font-semibold text-orange-400">- Angel, Corta Pelos</p>
               </div>
             </div>
           </div>
