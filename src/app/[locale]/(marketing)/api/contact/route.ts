@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
 
     // Send email to business
     const emailResult = await resend.emails.send({
-      from: 'Toni Web Development <anthony3303@outlook.com>',
+      from: 'Toni Web Development <onboarding@resend.dev>',
       to: ['anthony3303@outlook.com'],
       subject: `New Website Inquiry from ${name}`,
       html: `
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email to client
     await resend.emails.send({
-      from: 'Toni Web Development <anthony3303@outlook.com>',
+      from: 'Toni Web Development <onboarding@resend.dev>',
       to: [email],
       subject: 'Thank you for your inquiry - Toni Web Development',
       html: `
