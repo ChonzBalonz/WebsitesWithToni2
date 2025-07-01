@@ -206,7 +206,7 @@ export default function HomePage() {
 
       {/* Section: Crafting Unique Websites for You */}
       <section className="py-12 md:py-16 flex flex-col items-center min-h-[40vh] px-4">
-        <img src="/assets/images/arcjet-light.svg" alt="Logo" className="w-16 md:w-20 h-16 md:h-20 mb-4" />
+        <Image src="/assets/images/arcjet-light.svg" alt="Logo" width={80} height={80} className="w-16 md:w-20 h-16 md:h-20 mb-4" />
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8">Crafting Unique Websites for You</h2>
         <div className="flex flex-col lg:flex-row justify-center gap-8 lg:gap-12 w-full max-w-6xl mb-12">
           <div className="flex-1 text-center lg:text-left">
@@ -320,8 +320,8 @@ export default function HomePage() {
                 <h3 className={`text-xl md:text-2xl font-bold mb-4${card.key === 'professional' ? ' border-b-4 border-black' : ''}`}>{card.title}</h3>
                 <div className="text-3xl md:text-4xl font-bold mb-4">{card.price}</div>
                 <ul className="text-left mb-6 md:mb-8 space-y-2 text-sm md:text-base">
-                  {card.features.map((feature, idx) => (
-                    <li key={idx}>
+                  {card.features.map(feature => (
+                    <li key={feature}>
                       ✓
                       {feature}
                     </li>
