@@ -117,10 +117,12 @@ export default function ServicesPage() {
                 'Third-Party Integrations',
                 'Scalable Architecture',
               ],
-              button: <>
-                <div className="text-xl md:text-2xl font-bold text-orange-400 mb-4">Custom Quote</div>
-                <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Quote</Link>
-              </>,
+              button: (
+                <div>
+                  <div className="text-xl md:text-2xl font-bold text-orange-400 mb-4">Custom Quote</div>
+                  <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Quote</Link>
+                </div>
+              ),
             },
           ].map((service, i) => (
             <motion.div
@@ -135,8 +137,8 @@ export default function ServicesPage() {
               <h3 className="text-xl md:text-2xl font-bold mb-4">{service.title}</h3>
               <p className="text-gray-300 mb-6 text-sm md:text-base">{service.desc}</p>
               <ul className="text-xs md:text-sm text-gray-300 mb-6 space-y-2">
-                {service.features.map((feature, idx) => (
-                  <li key={idx}>
+                {service.features.map(feature => (
+                  <li key={feature}>
                     •
                     {feature}
                   </li>

@@ -110,6 +110,7 @@ export default function HomePage() {
                     <button
                       className="mt-4 px-6 py-2 bg-black border border-orange-400 text-orange-400 rounded-lg hover:bg-orange-400 hover:text-black font-semibold transition"
                       onClick={() => setShowModal(false)}
+                      type="button"
                     >
                       Close
                     </button>
