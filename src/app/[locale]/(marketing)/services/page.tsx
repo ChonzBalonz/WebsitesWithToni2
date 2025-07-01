@@ -1,3 +1,5 @@
+'use client';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -38,108 +40,111 @@ export default function ServicesPage() {
       {/* Services Grid */}
       <div className="max-w-6xl mx-auto px-4 pb-12 md:pb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {/* Service 1 */}
-          <div className="bg-gray-900 rounded-lg p-6 md:p-8 border border-gray-700 hover:border-orange-400 transition">
-            <div className="text-3xl md:text-4xl mb-4">🌐</div>
-            <h3 className="text-xl md:text-2xl font-bold mb-4">Business Websites</h3>
-            <p className="text-gray-300 mb-6 text-sm md:text-base">Professional websites that showcase your business and convert visitors into customers.</p>
-            <ul className="text-xs md:text-sm text-gray-300 mb-6 space-y-2">
-              <li>• Custom Design & Branding</li>
-              <li>• Mobile Responsive</li>
-              <li>• Contact Forms</li>
-              <li>• SEO Optimization</li>
-              <li>• Fast Loading Speed</li>
-            </ul>
-            <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">
-              Get Started
-            </Link>
-          </div>
-
-          {/* Service 2 */}
-          <div className="bg-gray-900 rounded-lg p-6 md:p-8 border border-gray-700 hover:border-orange-400 transition">
-            <div className="text-3xl md:text-4xl mb-4">🛒</div>
-            <h3 className="text-xl md:text-2xl font-bold mb-4">E-commerce Stores</h3>
-            <p className="text-gray-300 mb-6 text-sm md:text-base">Complete online stores that help you sell products and grow your revenue.</p>
-            <ul className="text-xs md:text-sm text-gray-300 mb-6 space-y-2">
-              <li>• Product Catalog</li>
-              <li>• Secure Payment Processing</li>
-              <li>• Inventory Management</li>
-              <li>• Order Tracking</li>
-              <li>• Customer Accounts</li>
-            </ul>
-            <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">
-              Get Started
-            </Link>
-          </div>
-
-          {/* Service 3 */}
-          <div className="bg-gray-900 rounded-lg p-6 md:p-8 border border-gray-700 hover:border-orange-400 transition">
-            <div className="text-3xl md:text-4xl mb-4">📱</div>
-            <h3 className="text-xl md:text-2xl font-bold mb-4">Landing Pages</h3>
-            <p className="text-gray-300 mb-6 text-sm md:text-base">High-converting landing pages designed to capture leads and drive sales.</p>
-            <ul className="text-xs md:text-sm text-gray-300 mb-6 space-y-2">
-              <li>• Lead Capture Forms</li>
-              <li>• A/B Testing Ready</li>
-              <li>• Conversion Optimization</li>
-              <li>• Analytics Integration</li>
-              <li>• Fast Loading</li>
-            </ul>
-            <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">
-              Get Started
-            </Link>
-          </div>
-
-          {/* Service 4 */}
-          <div className="bg-gray-900 rounded-lg p-6 md:p-8 border border-gray-700 hover:border-orange-400 transition">
-            <div className="text-3xl md:text-4xl mb-4">🔧</div>
-            <h3 className="text-xl md:text-2xl font-bold mb-4">Website Maintenance</h3>
-            <p className="text-gray-300 mb-6 text-sm md:text-base">Keep your website secure, updated, and performing at its best.</p>
-            <ul className="text-xs md:text-sm text-gray-300 mb-6 space-y-2">
-              <li>• Security Updates</li>
-              <li>• Performance Optimization</li>
-              <li>• Content Updates</li>
-              <li>• Backup Management</li>
-              <li>• 24/7 Support</li>
-            </ul>
-            <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">
-              Get Started
-            </Link>
-          </div>
-
-          {/* Service 5 */}
-          <div className="bg-gray-900 rounded-lg p-6 md:p-8 border border-gray-700 hover:border-orange-400 transition">
-            <div className="text-3xl md:text-4xl mb-4">📈</div>
-            <h3 className="text-xl md:text-2xl font-bold mb-4">SEO Optimization</h3>
-            <p className="text-gray-300 mb-6 text-sm md:text-base">Improve your search rankings and drive more organic traffic to your website.</p>
-            <ul className="text-xs md:text-sm text-gray-300 mb-6 space-y-2">
-              <li>• Keyword Research</li>
-              <li>• On-Page Optimization</li>
-              <li>• Content Strategy</li>
-              <li>• Performance Monitoring</li>
-              <li>• Monthly Reports</li>
-            </ul>
-            <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">
-              Get Started
-            </Link>
-          </div>
-
-          {/* Service 6 */}
-          <div className="bg-gray-900 rounded-lg p-6 md:p-8 border border-gray-700 hover:border-orange-400 transition">
-            <div className="text-3xl md:text-4xl mb-4">🎨</div>
-            <h3 className="text-xl md:text-2xl font-bold mb-4">Custom Development</h3>
-            <p className="text-gray-300 mb-6 text-sm md:text-base">Bespoke web applications and features tailored to your specific needs.</p>
-            <ul className="text-xs md:text-sm text-gray-300 mb-6 space-y-2">
-              <li>• Custom Features</li>
-              <li>• API Integration</li>
-              <li>• Database Design</li>
-              <li>• Third-Party Integrations</li>
-              <li>• Scalable Architecture</li>
-            </ul>
-            <div className="text-xl md:text-2xl font-bold text-orange-400 mb-4">Custom Quote</div>
-            <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">
-              Get Quote
-            </Link>
-          </div>
+          {[
+            {
+              icon: '🌐',
+              title: 'Business Websites',
+              desc: 'Professional websites that showcase your business and convert visitors into customers.',
+              features: [
+                'Custom Design & Branding',
+                'Mobile Responsive',
+                'Contact Forms',
+                'SEO Optimization',
+                'Fast Loading Speed',
+              ],
+              button: <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Started</Link>,
+            },
+            {
+              icon: '🛒',
+              title: 'E-commerce Stores',
+              desc: 'Complete online stores that help you sell products and grow your revenue.',
+              features: [
+                'Product Catalog',
+                'Secure Payment Processing',
+                'Inventory Management',
+                'Order Tracking',
+                'Customer Accounts',
+              ],
+              button: <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Started</Link>,
+            },
+            {
+              icon: '📱',
+              title: 'Landing Pages',
+              desc: 'High-converting landing pages designed to capture leads and drive sales.',
+              features: [
+                'Lead Capture Forms',
+                'A/B Testing Ready',
+                'Conversion Optimization',
+                'Analytics Integration',
+                'Fast Loading',
+              ],
+              button: <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Started</Link>,
+            },
+            {
+              icon: '🔧',
+              title: 'Website Maintenance',
+              desc: 'Keep your website secure, updated, and performing at its best.',
+              features: [
+                'Security Updates',
+                'Performance Optimization',
+                'Content Updates',
+                'Backup Management',
+                '24/7 Support',
+              ],
+              button: <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Started</Link>,
+            },
+            {
+              icon: '📈',
+              title: 'SEO Optimization',
+              desc: 'Improve your search rankings and drive more organic traffic to your website.',
+              features: [
+                'Keyword Research',
+                'On-Page Optimization',
+                'Content Strategy',
+                'Performance Monitoring',
+                'Monthly Reports',
+              ],
+              button: <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Started</Link>,
+            },
+            {
+              icon: '🎨',
+              title: 'Custom Development',
+              desc: 'Bespoke web applications and features tailored to your specific needs.',
+              features: [
+                'Custom Features',
+                'API Integration',
+                'Database Design',
+                'Third-Party Integrations',
+                'Scalable Architecture',
+              ],
+              button: <>
+                <div className="text-xl md:text-2xl font-bold text-orange-400 mb-4">Custom Quote</div>
+                <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Quote</Link>
+              </>,
+            },
+          ].map((service, i) => (
+            <motion.div
+              key={service.title}
+              className="bg-gray-900 rounded-lg p-6 md:p-8 border border-gray-700 hover:border-orange-400 transition"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: i * 0.12, ease: 'easeOut' }}
+            >
+              <div className="text-3xl md:text-4xl mb-4">{service.icon}</div>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">{service.title}</h3>
+              <p className="text-gray-300 mb-6 text-sm md:text-base">{service.desc}</p>
+              <ul className="text-xs md:text-sm text-gray-300 mb-6 space-y-2">
+                {service.features.map((feature, idx) => (
+                  <li key={idx}>
+                    •
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              {service.button}
+            </motion.div>
+          ))}
         </div>
       </div>
 

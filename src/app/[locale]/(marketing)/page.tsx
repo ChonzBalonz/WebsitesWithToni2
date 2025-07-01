@@ -1,4 +1,5 @@
 'use client';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -261,50 +262,73 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Simple, Transparent Pricing</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            <div className="bg-black border border-gray-700 rounded-lg p-6 md:p-8 text-center">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">Basic</h3>
-              <div className="text-3xl md:text-4xl font-bold mb-4">$400</div>
-              <ul className="text-left mb-6 md:mb-8 space-y-2 text-sm md:text-base">
-                <li>✓ 1 Pages</li>
-                <li>✓ Mobile Responsive</li>
-                <li>✓ Contact Form</li>
-                <li>✓ SEO Optimized</li>
-                <li>✓ 2 Revisions</li>
-              </ul>
-              <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition">
-                Get Started
-              </Link>
-            </div>
-            <div className="bg-orange-400 border border-orange-400 rounded-lg p-6 md:p-8 text-center text-black">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">Professional</h3>
-              <div className="text-3xl md:text-4xl font-bold mb-4">$1,000</div>
-              <ul className="text-left mb-6 md:mb-8 space-y-2 text-sm md:text-base">
-                <li>✓ 6 Pages</li>
-                <li>✓ E-commerce Ready</li>
-                <li>✓ Blog Setup</li>
-                <li>✓ Google Analytics</li>
-                <li>✓ 3 Revisions</li>
-                <li>✓ 1 Month Support</li>
-              </ul>
-              <Link href="/contact" className="block w-full bg-black hover:bg-gray-800 text-white py-3 rounded-lg font-semibold transition">
-                Most Popular
-              </Link>
-            </div>
-            <div className="bg-black border border-gray-700 rounded-lg p-6 md:p-8 text-center">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">Custom</h3>
-              <div className="text-3xl md:text-4xl font-bold mb-4">$ Get Quote</div>
-              <ul className="text-left mb-6 md:mb-8 space-y-2 text-sm md:text-base">
-                <li>✓ Unlimited Pages</li>
-                <li>✓ Custom Features</li>
-                <li>✓ Advanced SEO</li>
-                <li>✓ Content Creation</li>
-                <li>✓ Unlimited Revisions</li>
-                <li>✓ 3 Months Support</li>
-              </ul>
-              <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition">
-                Get Quote
-              </Link>
-            </div>
+            {[
+              {
+                key: 'basic',
+                className: 'bg-black border border-gray-700 rounded-lg p-6 md:p-8 text-center',
+                title: 'Basic',
+                price: '$400',
+                features: [
+                  '1 Pages',
+                  'Mobile Responsive',
+                  'Contact Form',
+                  'SEO Optimized',
+                  '2 Revisions',
+                ],
+                button: <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition">Get Started</Link>,
+              },
+              {
+                key: 'professional',
+                className: 'bg-orange-400 border border-orange-400 rounded-lg p-6 md:p-8 text-center text-black',
+                title: 'Professional',
+                price: '$1,000',
+                features: [
+                  '6 Pages',
+                  'E-commerce Ready',
+                  'Blog Setup',
+                  'Google Analytics',
+                  '3 Revisions',
+                  '1 Month Support',
+                ],
+                button: <Link href="/contact" className="block w-full bg-black hover:bg-gray-800 text-white py-3 rounded-lg font-semibold transition">Most Popular</Link>,
+              },
+              {
+                key: 'custom',
+                className: 'bg-black border border-gray-700 rounded-lg p-6 md:p-8 text-center',
+                title: 'Custom',
+                price: '$ Get Quote',
+                features: [
+                  'Unlimited Pages',
+                  'Custom Features',
+                  'Advanced SEO',
+                  'Content Creation',
+                  'Unlimited Revisions',
+                  '3 Months Support',
+                ],
+                button: <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition">Get Quote</Link>,
+              },
+            ].map((card, i) => (
+              <motion.div
+                key={card.key}
+                className={card.className}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: i * 0.15, ease: 'easeOut' }}
+              >
+                <h3 className={`text-xl md:text-2xl font-bold mb-4${card.key === 'professional' ? ' border-b-4 border-black' : ''}`}>{card.title}</h3>
+                <div className="text-3xl md:text-4xl font-bold mb-4">{card.price}</div>
+                <ul className="text-left mb-6 md:mb-8 space-y-2 text-sm md:text-base">
+                  {card.features.map((feature, idx) => (
+                    <li key={idx}>
+                      ✓
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                {card.button}
+              </motion.div>
+            ))}
           </div>
           {/* Down Payment Note */}
           <div className="max-w-2xl mx-auto mt-6 bg-black bg-opacity-80 border border-orange-400 rounded-lg p-4 text-center">

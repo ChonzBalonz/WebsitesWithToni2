@@ -1,5 +1,59 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+
+function CountUp({ end, suffix = '', duration = 1.5 }: { end: number; suffix?: string; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) {
+      return;
+    }
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry && entry.isIntersecting) {
+          startCounting();
+        }
+      },
+      { threshold: 0.3 },
+    );
+    observer.observe(node);
+    return () => observer && observer.disconnect();
+  }, [end, duration, hasAnimated]);
+
+  function startCounting() {
+    if (hasAnimated) {
+      return;
+    }
+    setHasAnimated(true);
+    const start = 0;
+    const endValue = end;
+    const startTime = performance.now();
+    function animate(now: number) {
+      const elapsed = (now - startTime) / 1000;
+      const progress = Math.min(elapsed / duration, 1);
+      const value = Math.floor(progress * (endValue - start) + start);
+      setCount(value);
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(endValue);
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
+}
 
 export default function PortfolioPage() {
   const portfolioItems = [
@@ -170,19 +224,29 @@ export default function PortfolioPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Our Success Metrics</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">100%</div>
+              <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">
+                <CountUp end={100} suffix="%" />
+              </div>
               <p className="text-gray-300 text-sm md:text-base">Client Satisfaction</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">24h</div>
+              <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">
+                <CountUp end={24} suffix="h" />
+              </div>
               <p className="text-gray-300 text-sm md:text-base">Response Time</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">2-3</div>
+              <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">
+                <CountUp end={3} />
+                <span className="mx-1">-</span>
+                <CountUp end={2} />
+              </div>
               <p className="text-gray-300 text-sm md:text-base">Weeks Average Delivery</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">40%</div>
+              <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">
+                <CountUp end={40} suffix="%" />
+              </div>
               <p className="text-gray-300 text-sm md:text-base">Average Revenue Increase</p>
             </div>
           </div>
