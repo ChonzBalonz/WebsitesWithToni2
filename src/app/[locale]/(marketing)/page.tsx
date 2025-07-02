@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function HomePage() {
   // Modal state
@@ -11,6 +11,56 @@ export default function HomePage() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Typewriter effect for hero section
+  const words = useMemo(() => ['big', 'small', 'any'], []);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [displayed, setDisplayed] = useState('');
+  const [typing, setTyping] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    if (isPaused) {
+      timeout = setTimeout(() => {
+        setIsPaused(false);
+        setTyping(false);
+      }, 1000); // 1 second pause after typing
+    } else if (typing) {
+      if (
+        typeof words[currentWordIndex] !== 'undefined'
+        && displayed.length < words[currentWordIndex].length
+      ) {
+        timeout = setTimeout(() => {
+          setDisplayed(words[currentWordIndex]!.slice(0, displayed.length + 1));
+        }, 200);
+      } else {
+        timeout = setTimeout(() => {
+          setIsPaused(true);
+        }, 0);
+      }
+    } else {
+      if (
+        typeof words[currentWordIndex] !== 'undefined'
+        && displayed.length > 0
+      ) {
+        timeout = setTimeout(() => {
+          setDisplayed(words[currentWordIndex]!.slice(0, displayed.length - 1));
+        }, 120);
+      } else {
+        const nextWordTimeout = setTimeout(() => {
+          setCurrentWordIndex(i => (i + 1) % words.length);
+          setTyping(true);
+        }, 0);
+        return () => clearTimeout(nextWordTimeout);
+      }
+    }
+    return () => {
+      if (timeout !== null) {
+        clearTimeout(timeout);
+      }
+    };
+  }, [displayed, typing, currentWordIndex, isPaused, words]);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowModal(true), 3000);
@@ -157,7 +207,9 @@ export default function HomePage() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center leading-tight mb-4 drop-shadow-lg">
             Custom Websites for
             <br />
-            Small Businesses
+            <span className="text-orange-400">{displayed}</span>
+            {' '}
+            Businesses
           </h1>
           <p className="text-lg md:text-xl text-center mb-6 max-w-2xl">Transform your business with a professional website that converts visitors into customers. Starting at $400.</p>
 
