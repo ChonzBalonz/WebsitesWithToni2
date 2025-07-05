@@ -79,6 +79,17 @@ export default function PortfolioPage() {
       results: ['30% increase in walk-ins', 'Better brand recognition', 'Enhanced online presence'],
       price: '$399',
     },
+    {
+      id: 3,
+      title: 'Plumbing Services - Professional Plumbing',
+      category: 'Business Website',
+      description: 'A professional plumbing website with service showcase and contact integration.',
+      image: '/assets/images/nextjs-boilerplate-sign-in.png',
+      video: '/assets/videos/tonis_plumbing_website.mp4',
+      features: ['Service Showcase', 'Contact Forms', 'Mobile Responsive', 'Professional Design'],
+      results: ['Enhanced online presence', 'Improved lead generation', 'Professional brand image'],
+      price: '$650',
+    },
   ];
 
   return (
