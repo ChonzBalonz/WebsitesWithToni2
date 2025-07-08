@@ -363,7 +363,7 @@ export default function HomePage() {
             ].map((card, i) => (
               <motion.div
                 key={card.key}
-                className={card.className}
+                className={`${card.className} transition-transform duration-300 hover:scale-105 hover:shadow-2xl`}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}

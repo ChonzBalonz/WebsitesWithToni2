@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import MatrixRainIcon from './MatrixRainIcon';
 
 export default function ServicesPage() {
   return (
@@ -127,7 +128,7 @@ export default function ServicesPage() {
           ].map((service, i) => (
             <motion.div
               key={service.title}
-              className="bg-gray-900 rounded-lg p-6 md:p-8 border border-gray-700 hover:border-orange-400 transition"
+              className="bg-gray-900 rounded-lg p-6 md:p-8 border border-gray-700 hover:border-orange-400 transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -154,25 +155,52 @@ export default function ServicesPage() {
       <section className="py-12 md:py-16 bg-gray-900">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Our Process</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl mb-4">1️⃣</div>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-0">
+            {/* Step 1 */}
+            <div className="flex flex-col items-center text-center w-full md:w-1/4">
+              <div className="text-3xl md:text-4xl mb-4">💡</div>
               <h3 className="text-lg md:text-xl font-bold mb-2">Discovery</h3>
               <p className="text-gray-300 text-sm md:text-base">We understand your business goals and requirements</p>
             </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl mb-4">2️⃣</div>
+            {/* Arrow 1 */}
+            <div className="hidden md:flex items-center justify-center w-10">
+              <span className="text-orange-400 text-3xl">→</span>
+            </div>
+            {/* Step 2 */}
+            <div className="flex flex-col items-center text-center w-full md:w-1/4">
+              <div className="text-3xl md:text-4xl mb-4">📐</div>
               <h3 className="text-lg md:text-xl font-bold mb-2">Design</h3>
               <p className="text-gray-300 text-sm md:text-base">Create beautiful, functional designs that convert</p>
             </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl mb-4">3️⃣</div>
+            {/* Arrow 2 */}
+            <div className="hidden md:flex items-center justify-center w-10">
+              <span className="text-orange-400 text-3xl">→</span>
+            </div>
+            {/* Step 3 - Matrix Rain Effect */}
+            <div className="flex flex-col items-center text-center w-full md:w-1/4 relative">
+              <div className="mb-4 flex items-center justify-center">
+                <MatrixRainIcon />
+              </div>
               <h3 className="text-lg md:text-xl font-bold mb-2">Development</h3>
               <p className="text-gray-300 text-sm md:text-base">Build your website with modern, clean code</p>
             </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl mb-4">4️⃣</div>
-              <h3 className="text-lg md:text-xl font-bold mb-2">Launch</h3>
+            {/* Arrow 3 */}
+            <div className="hidden md:flex items-center justify-center w-10">
+              <span className="text-orange-400 text-3xl">→</span>
+            </div>
+            {/* Step 4 - Animated Trophy with Glow */}
+            <div className="flex flex-col items-center text-center w-full md:w-1/4 relative">
+              <div className="relative flex items-center justify-center mb-4">
+                <motion.span
+                  className="absolute inset-0 rounded-full bg-orange-400 blur-2xl opacity-60"
+                  style={{ zIndex: 0, width: '48px', height: '48px' }}
+                  initial={{ scale: 1, opacity: 0.7 }}
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <span className="relative text-4xl md:text-5xl" style={{ color: '#fb923c', zIndex: 1 }}>🏆</span>
+              </div>
+              <h3 className="text-lg md:text-xl font-bold mb-2">Success</h3>
               <p className="text-gray-300 text-sm md:text-base">Deploy and optimize for success</p>
             </div>
           </div>
