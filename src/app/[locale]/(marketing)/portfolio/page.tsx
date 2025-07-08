@@ -3,7 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-function CountUp({ end, suffix = '', duration = 1.5 }: { end: number; suffix?: string; duration?: number }) {
+function CountUp({
+  end,
+  suffix = '',
+  duration = 1.5,
+}: {
+  end: number;
+  suffix?: string;
+  duration?: number;
+}) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -61,22 +69,42 @@ export default function PortfolioPage() {
       id: 1,
       title: 'Beauty Empress - Beauty Salon',
       category: 'Business Website',
-      description: 'A modern, elegant website for a beauty salon that increased online bookings by 40%.',
+      description:
+        'A modern, elegant website for a beauty salon that increased online bookings by 40%.',
       image: '/assets/images/nextjs-boilerplate-sign-in.png',
       video: '/assets/videos/Beautyempressbe website preview.mp4',
-      features: ['Online Booking System', 'Service Gallery', 'Customer Reviews', 'Mobile Responsive'],
-      results: ['40% increase in online bookings', '25% more website traffic', 'Improved customer engagement'],
+      features: [
+        'Online Booking System',
+        'Service Gallery',
+        'Customer Reviews',
+        'Mobile Responsive',
+      ],
+      results: [
+        '40% increase in online bookings',
+        '25% more website traffic',
+        'Improved customer engagement',
+      ],
       price: '$399',
     },
     {
       id: 2,
       title: 'Corta Pelos - Barbershop',
       category: 'Business Website',
-      description: 'A sleek, masculine design for a barbershop that helped increase walk-in customers.',
+      description:
+        'A sleek, masculine design for a barbershop that helped increase walk-in customers.',
       image: '/assets/images/nextjs-boilerplate-sign-up.png',
       video: '/assets/videos/cortapelos website preivew .mp4',
-      features: ['Service Menu', 'Gallery Showcase', 'Contact Integration', 'Social Media Links'],
-      results: ['30% increase in walk-ins', 'Better brand recognition', 'Enhanced online presence'],
+      features: [
+        'Service Menu',
+        'Gallery Showcase',
+        'Contact Integration',
+        'Social Media Links',
+      ],
+      results: [
+        '30% increase in walk-ins',
+        'Better brand recognition',
+        'Enhanced online presence',
+      ],
       price: '$399',
     },
   ];
@@ -95,10 +123,35 @@ export default function PortfolioPage() {
             priority
           />
           <ul className="flex space-x-4 md:space-x-8 text-base md:text-lg font-medium mx-auto">
-            <li><Link href="/" className="hover:text-orange-400 cursor-pointer">Home</Link></li>
-            <li><Link href="/services" className="hover:text-orange-400 cursor-pointer">Services</Link></li>
-            <li><Link href="/portfolio" className="text-orange-400 border-b-2 border-orange-400">Portfolio</Link></li>
-            <li><Link href="/contact" className="hover:text-orange-400 cursor-pointer">Contact</Link></li>
+            <li>
+              <Link href="/" className="hover:text-orange-400 cursor-pointer">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/services"
+                className="hover:text-orange-400 cursor-pointer"
+              >
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/portfolio"
+                className="text-orange-400 border-b-2 border-orange-400"
+              >
+                Portfolio
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/contact"
+                className="hover:text-orange-400 cursor-pointer"
+              >
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
@@ -110,14 +163,23 @@ export default function PortfolioPage() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 drop-shadow-lg">
             Our Portfolio
           </h1>
-          <p className="text-lg md:text-xl mb-6 max-w-2xl">Discover how we've helped small businesses transform their online presence and drive real results.</p>
+          <p className="text-lg md:text-xl mb-6 max-w-2xl">
+            Discover how we've helped small businesses transform their online
+            presence and drive real results.
+          </p>
 
           {/* Multiple CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 mb-6 w-full max-w-md sm:max-w-none">
-            <Link href="/contact" className="bg-orange-400 hover:bg-orange-500 text-black px-6 md:px-8 py-3 rounded-full text-base md:text-lg font-semibold transition text-center">
+            <Link
+              href="/contact"
+              className="bg-orange-400 hover:bg-orange-500 text-black px-6 md:px-8 py-3 rounded-full text-base md:text-lg font-semibold transition text-center"
+            >
               Get Your Website
             </Link>
-            <Link href="/services" className="bg-transparent border-2 border-orange-400 hover:bg-orange-400 hover:text-black text-orange-400 px-6 md:px-8 py-3 rounded-full text-base md:text-lg font-semibold transition text-center">
+            <Link
+              href="/services"
+              className="bg-transparent border-2 border-orange-400 hover:bg-orange-400 hover:text-black text-orange-400 px-6 md:px-8 py-3 rounded-full text-base md:text-lg font-semibold transition text-center"
+            >
               View Services
             </Link>
           </div>
@@ -128,22 +190,31 @@ export default function PortfolioPage() {
       <div className="max-w-6xl mx-auto px-4 pb-12 md:pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
           {portfolioItems.map(item => (
-            <div key={item.id} className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-orange-400 transition">
+            <div
+              key={item.id}
+              className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-orange-400 transition"
+            >
               {/* Project Header */}
               <div className="p-4 md:p-6 border-b border-gray-700">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4 gap-4">
                   <div>
-                    <h3 className="text-xl md:text-2xl font-bold mb-2">{item.title}</h3>
+                    <h3 className="text-xl md:text-2xl font-bold mb-2">
+                      {item.title}
+                    </h3>
                     <span className="inline-block bg-orange-400 text-black px-3 py-1 rounded-full text-sm font-semibold">
                       {item.category}
                     </span>
                   </div>
                   <div className="text-left sm:text-right">
-                    <div className="text-2xl font-bold text-orange-400">{item.price}</div>
+                    <div className="text-2xl font-bold text-orange-400">
+                      {item.price}
+                    </div>
                     <div className="text-sm text-gray-400">Project Cost</div>
                   </div>
                 </div>
-                <p className="text-gray-300 text-sm md:text-base">{item.description}</p>
+                <p className="text-gray-300 text-sm md:text-base">
+                  {item.description}
+                </p>
               </div>
 
               {/* Project Media */}
@@ -178,10 +249,15 @@ export default function PortfolioPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   {/* Features */}
                   <div>
-                    <h4 className="font-bold text-base md:text-lg mb-3 text-orange-400">Features</h4>
+                    <h4 className="font-bold text-base md:text-lg mb-3 text-orange-400">
+                      Features
+                    </h4>
                     <ul className="space-y-2">
                       {item.features.map(feature => (
-                        <li key={feature} className="flex items-center text-xs md:text-sm">
+                        <li
+                          key={feature}
+                          className="flex items-center text-xs md:text-sm"
+                        >
                           <span className="text-orange-400 mr-2">✓</span>
                           {feature}
                         </li>
@@ -191,10 +267,15 @@ export default function PortfolioPage() {
 
                   {/* Results */}
                   <div>
-                    <h4 className="font-bold text-base md:text-lg mb-3 text-orange-400">Results</h4>
+                    <h4 className="font-bold text-base md:text-lg mb-3 text-orange-400">
+                      Results
+                    </h4>
                     <ul className="space-y-2">
                       {item.results.map(result => (
-                        <li key={result} className="flex items-center text-xs md:text-sm">
+                        <li
+                          key={result}
+                          className="flex items-center text-xs md:text-sm"
+                        >
                           <span className="text-green-400 mr-2">📈</span>
                           {result}
                         </li>
@@ -221,19 +302,25 @@ export default function PortfolioPage() {
       {/* Statistics Section */}
       <section className="py-12 md:py-16 bg-gray-900">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Our Success Metrics</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">
+            Our Success Metrics
+          </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">
                 <CountUp end={100} suffix="%" />
               </div>
-              <p className="text-gray-300 text-sm md:text-base">Client Satisfaction</p>
+              <p className="text-gray-300 text-sm md:text-base">
+                Client Satisfaction
+              </p>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">
                 <CountUp end={24} suffix="h" />
               </div>
-              <p className="text-gray-300 text-sm md:text-base">Response Time</p>
+              <p className="text-gray-300 text-sm md:text-base">
+                Response Time
+              </p>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">
@@ -241,13 +328,17 @@ export default function PortfolioPage() {
                 <span className="mx-1">-</span>
                 <CountUp end={2} />
               </div>
-              <p className="text-gray-300 text-sm md:text-base">Weeks Average Delivery</p>
+              <p className="text-gray-300 text-sm md:text-base">
+                Weeks Average Delivery
+              </p>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">
                 <CountUp end={40} suffix="%" />
               </div>
-              <p className="text-gray-300 text-sm md:text-base">Average Revenue Increase</p>
+              <p className="text-gray-300 text-sm md:text-base">
+                Average Revenue Increase
+              </p>
             </div>
           </div>
         </div>
@@ -256,20 +347,27 @@ export default function PortfolioPage() {
       {/* Testimonials Section */}
       <section className="py-12 md:py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">What Our Clients Say</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">
+            What Our Clients Say
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div className="bg-gray-900 p-4 md:p-6 rounded-lg border border-gray-700">
               <div className="flex mb-4">
                 <span className="text-2xl text-orange-400">★★★★★</span>
               </div>
-              <p className="text-gray-300 mb-4 text-sm md:text-base">"Toni delivered exactly what we needed. Our new website has increased our online sales by 40%!"</p>
+              <p className="text-gray-300 mb-4 text-sm md:text-base">
+                "Toni delivered exactly what we needed. Our new website has
+                increased our online sales by 40%!"
+              </p>
               <div className="flex items-center">
                 <div className="w-10 md:w-12 h-10 md:h-12 bg-orange-400 rounded-full flex items-center justify-center text-black font-bold mr-3 text-sm md:text-base">
                   L
                 </div>
                 <div>
                   <p className="font-semibold text-sm md:text-base">Lupe</p>
-                  <p className="text-xs md:text-sm text-gray-400">Beauty Empress</p>
+                  <p className="text-xs md:text-sm text-gray-400">
+                    Beauty Empress
+                  </p>
                 </div>
               </div>
             </div>
@@ -277,7 +375,10 @@ export default function PortfolioPage() {
               <div className="flex mb-4">
                 <span className="text-2xl text-orange-400">★★★★★</span>
               </div>
-              <p className="text-gray-300 mb-4 text-sm md:text-base">"Professional, responsive, and affordable. Highly recommend for any small business."</p>
+              <p className="text-gray-300 mb-4 text-sm md:text-base">
+                "Professional, responsive, and affordable. Highly recommend for
+                any small business."
+              </p>
               <div className="flex items-center">
                 <div className="w-10 md:w-12 h-10 md:h-12 bg-orange-400 rounded-full flex items-center justify-center text-black font-bold mr-3 text-sm md:text-base">
                   A
@@ -295,13 +396,23 @@ export default function PortfolioPage() {
       {/* Final CTA Section */}
       <section className="py-12 md:py-16 bg-gray-900 text-center px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Join Our Success Stories?</h2>
-          <p className="text-lg md:text-xl mb-6 md:mb-8">Let's create a website that drives results for your business.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Ready to Join Our Success Stories?
+          </h2>
+          <p className="text-lg md:text-xl mb-6 md:mb-8">
+            Let's create a website that drives results for your business.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="bg-orange-400 hover:bg-orange-500 text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-lg md:text-xl font-semibold transition">
+            <Link
+              href="/contact"
+              className="bg-orange-400 hover:bg-orange-500 text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-lg md:text-xl font-semibold transition"
+            >
               Get Your Free Quote
             </Link>
-            <Link href="/services" className="bg-transparent border-2 border-orange-400 hover:bg-orange-400 hover:text-black text-orange-400 px-6 md:px-8 py-3 md:py-4 rounded-full text-lg md:text-xl font-semibold transition">
+            <Link
+              href="/services"
+              className="bg-transparent border-2 border-orange-400 hover:bg-orange-400 hover:text-black text-orange-400 px-6 md:px-8 py-3 md:py-4 rounded-full text-lg md:text-xl font-semibold transition"
+            >
               View Our Services
             </Link>
           </div>

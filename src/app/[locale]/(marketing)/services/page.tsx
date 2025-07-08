@@ -18,10 +18,35 @@ export default function ServicesPage() {
             priority
           />
           <ul className="flex space-x-4 md:space-x-8 text-base md:text-lg font-medium mx-auto">
-            <li><Link href="/" className="hover:text-orange-400 cursor-pointer">Home</Link></li>
-            <li><Link href="/services" className="text-orange-400 border-b-2 border-orange-400">Services</Link></li>
-            <li><Link href="/portfolio" className="hover:text-orange-400 cursor-pointer">Portfolio</Link></li>
-            <li><Link href="/contact" className="hover:text-orange-400 cursor-pointer">Contact</Link></li>
+            <li>
+              <Link href="/" className="hover:text-orange-400 cursor-pointer">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/services"
+                className="text-orange-400 border-b-2 border-orange-400"
+              >
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/portfolio"
+                className="hover:text-orange-400 cursor-pointer"
+              >
+                Portfolio
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/contact"
+                className="hover:text-orange-400 cursor-pointer"
+              >
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
@@ -29,9 +54,16 @@ export default function ServicesPage() {
       {/* Header Section */}
       <div className="py-12 md:py-20 text-center px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Services</h1>
-          <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8">Comprehensive web solutions designed to grow your business</p>
-          <Link href="/contact" className="bg-orange-400 hover:bg-orange-500 text-black px-6 md:px-8 py-3 rounded-full text-base md:text-lg font-semibold transition">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
+            Services
+          </h1>
+          <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8">
+            Comprehensive web solutions designed to grow your business
+          </p>
+          <Link
+            href="/contact"
+            className="bg-orange-400 hover:bg-orange-500 text-black px-6 md:px-8 py-3 rounded-full text-base md:text-lg font-semibold transition"
+          >
             Get Free Consultation
           </Link>
         </div>
@@ -52,7 +84,14 @@ export default function ServicesPage() {
                 'SEO Optimization',
                 'Fast Loading Speed',
               ],
-              button: <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Started</Link>,
+              button: (
+                <Link
+                  href="/contact"
+                  className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center"
+                >
+                  Get Started
+                </Link>
+              ),
             },
             {
               icon: '🛒',
@@ -65,7 +104,14 @@ export default function ServicesPage() {
                 'Order Tracking',
                 'Customer Accounts',
               ],
-              button: <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Started</Link>,
+              button: (
+                <Link
+                  href="/contact"
+                  className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center"
+                >
+                  Get Started
+                </Link>
+              ),
             },
             {
               icon: '📱',
@@ -78,7 +124,14 @@ export default function ServicesPage() {
                 'Analytics Integration',
                 'Fast Loading',
               ],
-              button: <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Started</Link>,
+              button: (
+                <Link
+                  href="/contact"
+                  className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center"
+                >
+                  Get Started
+                </Link>
+              ),
             },
             {
               icon: '🔧',
@@ -91,7 +144,14 @@ export default function ServicesPage() {
                 'Backup Management',
                 '24/7 Support',
               ],
-              button: <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Started</Link>,
+              button: (
+                <Link
+                  href="/contact"
+                  className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center"
+                >
+                  Get Started
+                </Link>
+              ),
             },
             {
               icon: '📈',
@@ -104,7 +164,14 @@ export default function ServicesPage() {
                 'Performance Monitoring',
                 'Monthly Reports',
               ],
-              button: <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Started</Link>,
+              button: (
+                <Link
+                  href="/contact"
+                  className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center"
+                >
+                  Get Started
+                </Link>
+              ),
             },
             {
               icon: '🎨',
@@ -119,8 +186,15 @@ export default function ServicesPage() {
               ],
               button: (
                 <div>
-                  <div className="text-xl md:text-2xl font-bold text-orange-400 mb-4">Custom Quote</div>
-                  <Link href="/contact" className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center">Get Quote</Link>
+                  <div className="text-xl md:text-2xl font-bold text-orange-400 mb-4">
+                    Custom Quote
+                  </div>
+                  <Link
+                    href="/contact"
+                    className="block w-full bg-orange-400 hover:bg-orange-500 text-black py-3 rounded-lg font-semibold transition text-center"
+                  >
+                    Get Quote
+                  </Link>
                 </div>
               ),
             },
@@ -134,8 +208,12 @@ export default function ServicesPage() {
               transition={{ duration: 0.7, delay: i * 0.12, ease: 'easeOut' }}
             >
               <div className="text-3xl md:text-4xl mb-4">{service.icon}</div>
-              <h3 className="text-xl md:text-2xl font-bold mb-4">{service.title}</h3>
-              <p className="text-gray-300 mb-6 text-sm md:text-base">{service.desc}</p>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">
+                {service.title}
+              </h3>
+              <p className="text-gray-300 mb-6 text-sm md:text-base">
+                {service.desc}
+              </p>
               <ul className="text-xs md:text-sm text-gray-300 mb-6 space-y-2">
                 {service.features.map(feature => (
                   <li key={feature}>
@@ -153,32 +231,57 @@ export default function ServicesPage() {
       {/* Process Section */}
       <section className="py-12 md:py-16 bg-gray-900">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Our Process</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">
+            Our Process
+          </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             <div className="text-center">
               <div className="text-3xl md:text-4xl mb-4">💡</div>
               <h3 className="text-lg md:text-xl font-bold mb-2">Discovery</h3>
-              <p className="text-gray-300 text-sm md:text-base">We understand your business goals and requirements</p>
+              <p className="text-gray-300 text-sm md:text-base">
+                We understand your business goals and requirements
+              </p>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl mb-4">🧑‍🎨</div>
               <h3 className="text-lg md:text-xl font-bold mb-2">Design</h3>
-              <p className="text-gray-300 text-sm md:text-base">Create beautiful, functional designs that convert</p>
+              <p className="text-gray-300 text-sm md:text-base">
+                Create beautiful, functional designs that convert
+              </p>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl mb-4">
-                <span className="inline-block animate-spin" style={{ animationDuration: '3s' }}>⚙️</span>
-                <span className="inline-block animate-spin ml-1" style={{ animationDuration: '3s' }}>⚙️</span>
+                <span
+                  className="inline-block animate-spin"
+                  style={{ animationDuration: '3s' }}
+                >
+                  ⚙️
+                </span>
+                <span
+                  className="inline-block animate-spin ml-1"
+                  style={{ animationDuration: '3s' }}
+                >
+                  ⚙️
+                </span>
               </div>
               <h3 className="text-lg md:text-xl font-bold mb-2">Development</h3>
-              <p className="text-gray-300 text-sm md:text-base">Build your website with modern, clean code</p>
+              <p className="text-gray-300 text-sm md:text-base">
+                Build your website with modern, clean code
+              </p>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl mb-4">
-                <span className="inline-block animate-bounce" style={{ animationDuration: '1s' }}>🚀</span>
+                <span
+                  className="inline-block animate-bounce"
+                  style={{ animationDuration: '1s' }}
+                >
+                  🚀
+                </span>
               </div>
               <h3 className="text-lg md:text-xl font-bold mb-2">Launch</h3>
-              <p className="text-gray-300 text-sm md:text-base">Deploy and optimize for success</p>
+              <p className="text-gray-300 text-sm md:text-base">
+                Deploy and optimize for success
+              </p>
             </div>
           </div>
         </div>
@@ -187,13 +290,23 @@ export default function ServicesPage() {
       {/* CTA Section */}
       <section className="py-12 md:py-16 text-center px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-lg md:text-xl mb-6 md:mb-8">Let's discuss your project and create something amazing together.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Ready to Get Started?
+          </h2>
+          <p className="text-lg md:text-xl mb-6 md:mb-8">
+            Let's discuss your project and create something amazing together.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="bg-orange-400 hover:bg-orange-500 text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-lg md:text-xl font-semibold transition">
+            <Link
+              href="/contact"
+              className="bg-orange-400 hover:bg-orange-500 text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-lg md:text-xl font-semibold transition"
+            >
               Get Free Quote
             </Link>
-            <Link href="/portfolio" className="bg-transparent border-2 border-orange-400 hover:bg-orange-400 hover:text-black text-orange-400 px-6 md:px-8 py-3 md:py-4 rounded-full text-lg md:text-xl font-semibold transition">
+            <Link
+              href="/portfolio"
+              className="bg-transparent border-2 border-orange-400 hover:bg-orange-400 hover:text-black text-orange-400 px-6 md:px-8 py-3 md:py-4 rounded-full text-lg md:text-xl font-semibold transition"
+            >
               View Our Work
             </Link>
           </div>

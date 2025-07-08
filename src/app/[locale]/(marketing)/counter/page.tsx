@@ -43,9 +43,7 @@ export default function Counter() {
         </a>
       </div>
 
-      <a
-        href="https://launch.arcjet.com/Q6eLbRE"
-      >
+      <a href="https://launch.arcjet.com/Q6eLbRE">
         <Image
           className="mx-auto mt-2"
           src="/assets/images/arcjet-light.svg"
@@ -56,4 +54,4 @@ export default function Counter() {
       </a>
     </>
   );
-};
+}

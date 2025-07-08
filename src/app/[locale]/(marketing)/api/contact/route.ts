@@ -61,7 +61,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: true,
-        message: 'Thank you for your inquiry! We will get back to you within 24 hours.',
+        message:
+          'Thank you for your inquiry! We will get back to you within 24 hours.',
       },
       { status: 200 },
     );

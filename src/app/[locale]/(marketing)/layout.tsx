@@ -11,11 +11,14 @@ export async function generateMetadata(props: IMarketingLayoutProps) {
 
   return {
     title: {
-      default: 'Websites With Toni - Custom Web Development for Small Businesses',
+      default:
+        'Websites With Toni - Custom Web Development for Small Businesses',
       template: '%s | Websites With Toni',
     },
-    description: 'Professional web development services for small businesses. Custom websites starting at $999. Get your free quote today and transform your online presence.',
-    keywords: 'web development, small business websites, custom websites, web design, e-commerce, landing pages, SEO optimization, website maintenance',
+    description:
+      'Professional web development services for small businesses. Custom websites starting at $999. Get your free quote today and transform your online presence.',
+    keywords:
+      'web development, small business websites, custom websites, web design, e-commerce, landing pages, SEO optimization, website maintenance',
     authors: [{ name: 'Toni' }],
     creator: 'Toni',
     publisher: 'Websites With Toni',
@@ -34,7 +37,8 @@ export async function generateMetadata(props: IMarketingLayoutProps) {
     },
     openGraph: {
       title: 'Websites With Toni - Custom Web Development for Small Businesses',
-      description: 'Professional web development services for small businesses. Custom websites starting at $999. Get your free quote today.',
+      description:
+        'Professional web development services for small businesses. Custom websites starting at $999. Get your free quote today.',
       url: 'https://websiteswithtoni.com',
       siteName: 'Websites With Toni',
       images: [
@@ -51,7 +55,8 @@ export async function generateMetadata(props: IMarketingLayoutProps) {
     twitter: {
       card: 'summary_large_image',
       title: 'Websites With Toni - Custom Web Development for Small Businesses',
-      description: 'Professional web development services for small businesses. Custom websites starting at $999.',
+      description:
+        'Professional web development services for small businesses. Custom websites starting at $999.',
       images: ['/assets/images/nextjs-starter-banner.png'],
     },
     robots: {
@@ -77,8 +82,6 @@ export default async function MarketingLayout(props: IMarketingLayoutProps) {
   setRequestLocale(locale);
 
   return (
-    <div className="bg-black min-h-screen w-full text-white">
-      {children}
-    </div>
+    <div className="bg-black min-h-screen w-full text-white">{children}</div>
   );
 }
