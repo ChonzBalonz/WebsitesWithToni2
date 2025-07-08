@@ -32,6 +32,9 @@ export default antfu(
       'coverage/',
       '*.d.ts',
       'migrations/**/*',
+      'pnpm-lock.yaml',
+      'package-lock.json',
+      'yarn.lock',
     ],
   },
   // --- Next.js Specific Rules ---
