@@ -156,22 +156,27 @@ export default function ServicesPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Our Process</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             <div className="text-center">
-              <div className="text-3xl md:text-4xl mb-4">1️⃣</div>
+              <div className="text-3xl md:text-4xl mb-4">💡</div>
               <h3 className="text-lg md:text-xl font-bold mb-2">Discovery</h3>
               <p className="text-gray-300 text-sm md:text-base">We understand your business goals and requirements</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl mb-4">2️⃣</div>
+              <div className="text-3xl md:text-4xl mb-4">🧑‍🎨</div>
               <h3 className="text-lg md:text-xl font-bold mb-2">Design</h3>
               <p className="text-gray-300 text-sm md:text-base">Create beautiful, functional designs that convert</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl mb-4">3️⃣</div>
+              <div className="text-3xl md:text-4xl mb-4">
+                <span className="inline-block animate-spin" style={{ animationDuration: '3s' }}>⚙️</span>
+                <span className="inline-block animate-spin ml-1" style={{ animationDuration: '3s' }}>⚙️</span>
+              </div>
               <h3 className="text-lg md:text-xl font-bold mb-2">Development</h3>
               <p className="text-gray-300 text-sm md:text-base">Build your website with modern, clean code</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl mb-4">4️⃣</div>
+              <div className="text-3xl md:text-4xl mb-4">
+                <span className="inline-block animate-bounce" style={{ animationDuration: '1s' }}>🚀</span>
+              </div>
               <h3 className="text-lg md:text-xl font-bold mb-2">Launch</h3>
               <p className="text-gray-300 text-sm md:text-base">Deploy and optimize for success</p>
             </div>
