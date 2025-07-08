@@ -1,31 +1,14 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 function CountUp({ end, suffix = '', duration = 1.5 }: { end: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
 
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) {
-      return;
-    }
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry && entry.isIntersecting) {
-          startCounting();
-        }
-      },
-      { threshold: 0.3 },
-    );
-    observer.observe(node);
-    return () => observer && observer.disconnect();
-  }, [end, duration, hasAnimated]);
-
-  function startCounting() {
+  const startCounting = useCallback(() => {
     if (hasAnimated) {
       return;
     }
@@ -45,7 +28,24 @@ function CountUp({ end, suffix = '', duration = 1.5 }: { end: number; suffix?: s
       }
     }
     requestAnimationFrame(animate);
-  }
+  }, [hasAnimated, end, duration]);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) {
+      return;
+    }
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry && entry.isIntersecting) {
+          startCounting();
+        }
+      },
+      { threshold: 0.3 },
+    );
+    observer.observe(node);
+    return () => observer && observer.disconnect();
+  }, [end, duration, hasAnimated, startCounting]);
 
   return (
     <span ref={ref}>
@@ -180,8 +180,8 @@ export default function PortfolioPage() {
                   <div>
                     <h4 className="font-bold text-base md:text-lg mb-3 text-orange-400">Features</h4>
                     <ul className="space-y-2">
-                      {item.features.map((feature, index) => (
-                        <li key={index} className="flex items-center text-xs md:text-sm">
+                      {item.features.map(feature => (
+                        <li key={feature} className="flex items-center text-xs md:text-sm">
                           <span className="text-orange-400 mr-2">✓</span>
                           {feature}
                         </li>
@@ -193,8 +193,8 @@ export default function PortfolioPage() {
                   <div>
                     <h4 className="font-bold text-base md:text-lg mb-3 text-orange-400">Results</h4>
                     <ul className="space-y-2">
-                      {item.results.map((result, index) => (
-                        <li key={index} className="flex items-center text-xs md:text-sm">
+                      {item.results.map(result => (
+                        <li key={result} className="flex items-center text-xs md:text-sm">
                           <span className="text-green-400 mr-2">📈</span>
                           {result}
                         </li>
