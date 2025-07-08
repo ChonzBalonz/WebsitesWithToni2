@@ -26,6 +26,11 @@ export default antfu(
 
     // Ignored paths
     ignores: [
+      'node_modules/',
+      '.next/',
+      'out/',
+      'coverage/',
+      '*.d.ts',
       'migrations/**/*',
     ],
   },
