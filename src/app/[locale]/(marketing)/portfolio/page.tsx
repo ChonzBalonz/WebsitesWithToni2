@@ -23,8 +23,9 @@ function CountUp({ end, suffix = '', duration = 1.5 }: { end: number; suffix?: s
     );
     observer.observe(node);
     return () => observer && observer.disconnect();
-  }, [end, duration, hasAnimated]);
+  }, [end, duration, hasAnimated, startCounting]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function startCounting() {
     if (hasAnimated) {
       return;
@@ -192,6 +193,7 @@ export default function PortfolioPage() {
                     <h4 className="font-bold text-base md:text-lg mb-3 text-orange-400">Features</h4>
                     <ul className="space-y-2">
                       {item.features.map((feature, index) => (
+                        // eslint-disable-next-line react/no-array-index-key
                         <li key={index} className="flex items-center text-xs md:text-sm">
                           <span className="text-orange-400 mr-2">✓</span>
                           {feature}
@@ -205,6 +207,7 @@ export default function PortfolioPage() {
                     <h4 className="font-bold text-base md:text-lg mb-3 text-orange-400">Results</h4>
                     <ul className="space-y-2">
                       {item.results.map((result, index) => (
+                        // eslint-disable-next-line react/no-array-index-key
                         <li key={index} className="flex items-center text-xs md:text-sm">
                           <span className="text-green-400 mr-2">📈</span>
                           {result}
