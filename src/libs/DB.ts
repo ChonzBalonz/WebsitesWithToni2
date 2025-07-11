@@ -31,8 +31,14 @@ if (Env.NODE_ENV !== 'production') {
   globalForDb.drizzle = db;
 }
 
-await migrate(db, {
-  migrationsFolder: path.join(process.cwd(), 'migrations'),
-});
+// Only run migrations at runtime, not during build time
+if (typeof window === 'undefined' && process.env.NODE_ENV !== 'test') {
+  // Run migrations asynchronously to avoid blocking the build
+  migrate(db, {
+    migrationsFolder: path.join(process.cwd(), 'migrations'),
+  }).catch((error) => {
+    console.warn('Database migration failed:', error);
+  });
+}
 
 export { db };
