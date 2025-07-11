@@ -2,6 +2,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+// TODO: Update the import path to where you place the ProfileCard component
+import ProfileCard from '../../../../components/ProfileCard';
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -296,6 +298,21 @@ export default function ContactPage() {
 
         {/* Contact Info & Testimonials */}
         <div className="flex-1 space-y-6 md:space-y-8">
+          {/* Profile Card Placeholder - Fill in your info below */}
+          {/* Example usage: import ProfileCard from 'path/to/ProfileCard' and use <ProfileCard ...props /> */}
+          <div className="mb-6">
+            {/* TODO: Replace the import path with the actual location of your ProfileCard component */}
+            {/* import ProfileCard from 'path/to/ProfileCard'; */}
+            <ProfileCard
+              name="Anthony Ramirez"
+              title="Web Developer"
+              handle="Anthony3303@outlook.com"
+              status="online"
+              avatarUrl="/assets/images/image_of_me.jpg"
+              showUserInfo={true}
+              enableTilt={true}
+            />
+          </div>
           {/* Quick Contact */}
           <div
             className="rounded-lg p-6 md:p-8 shadow-lg backdrop-blur-sm"
