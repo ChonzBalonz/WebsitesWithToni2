@@ -135,9 +135,7 @@
     "vitest-browser-react": "^1.0.0"
   },
   "release": {
-    "branches": [
-      "main"
-    ],
+    "branches": ["main"],
     "plugins": [
       [
         "@semantic-release/commit-analyzer",
