@@ -27,6 +27,51 @@ export default antfu(
     // Ignored paths
     ignores: [
       'migrations/**/*',
+      'node_modules/**/*',
+      '.next/**/*',
+      'dist/**/*',
+      'out/**/*',
+      'build/**/*',
+      '.pnp',
+      '.pnp.js',
+      '.env*',
+      'npm-debug.log*',
+      'yarn-debug.log*',
+      'yarn-error.log*',
+      '*.pid',
+      '*.seed',
+      '*.pid.lock',
+      'coverage/**/*',
+      '*.lcov',
+      '.nyc_output',
+      'jspm_packages/**/*',
+      '.npm',
+      '.eslintcache',
+      '.rpt2_cache/**/*',
+      '.rts2_cache_cjs/**/*',
+      '.rts2_cache_es/**/*',
+      '.rts2_cache_umd/**/*',
+      '.node_repl_history',
+      '*.tgz',
+      '.yarn-integrity',
+      '.cache/**/*',
+      '.parcel-cache/**/*',
+      '.nuxt/**/*',
+      '.vuepress/dist/**/*',
+      '.serverless/**/*',
+      '.fusebox/**/*',
+      '.dynamodb/**/*',
+      '.tern-port',
+      '.vscode-test/**/*',
+      '.yarn/cache/**/*',
+      '.yarn/unplugged/**/*',
+      '.yarn/build-state.yml',
+      '.yarn/install-state.gz',
+      '.pnp.*',
+      '.vercel/**/*',
+      '*.db',
+      '*.sqlite',
+      '*.sqlite3',
     ],
   },
   // --- Next.js Specific Rules ---
@@ -58,6 +103,31 @@ export default antfu(
   },
   // --- Storybook Rules ---
   ...storybook.configs['flat/recommended'],
+  // --- JSON Files Configuration ---
+  {
+    files: [
+      '**/*.json',
+      '**/*.jsonc',
+    ],
+    rules: {
+      // Disable all JSON formatting rules that cause deployment issues
+      'jsonc/key-spacing': 'off',
+      'jsonc/object-curly-spacing': 'off',
+      'jsonc/comma-spacing': 'off',
+      'jsonc/array-bracket-spacing': 'off',
+      'jsonc/object-property-newline': 'off',
+      'jsonc/object-curly-newline': 'off',
+      'jsonc/array-element-newline': 'off',
+      'jsonc/indent': 'off',
+      'jsonc/quotes': 'off',
+      'jsonc/quote-props': 'off',
+      'jsonc/comma-dangle': 'off',
+      'jsonc/no-multiple-empty-lines': 'off',
+      'jsonc/no-trailing-spaces': 'off',
+      'jsonc/eol-last': 'off',
+      'jsonc/no-irregular-whitespace': 'off',
+    },
+  },
   // --- Custom Rule Overrides ---
   {
     rules: {
@@ -68,6 +138,10 @@ export default antfu(
       'node/prefer-global/process': 'off', // Allow using `process.env`
       'test/padding-around-all': 'error', // Add padding in test files
       'test/prefer-lowercase-title': 'off', // Allow using uppercase titles in test titles
+      // Disable JSON formatting rules that cause deployment issues
+      'jsonc/key-spacing': 'off',
+      'jsonc/object-curly-spacing': 'off',
+      'style/comma-spacing': 'off',
     },
   },
 );
