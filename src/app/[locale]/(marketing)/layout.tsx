@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { setRequestLocale } from 'next-intl/server';
+import PageTransition from '../../../components/PageTransition';
 
 type IMarketingLayoutProps = {
   children: ReactNode;
@@ -82,6 +83,10 @@ export default async function MarketingLayout(props: IMarketingLayoutProps) {
   setRequestLocale(locale);
 
   return (
-    <div className="bg-black min-h-screen w-full text-white">{children}</div>
+    <div className="bg-black min-h-screen w-full text-white">
+      <PageTransition>
+        {children}
+      </PageTransition>
+    </div>
   );
 }

@@ -140,7 +140,7 @@ export default function ContactPage() {
         {/* Email Form or Success Screen */}
         {showSuccess
           ? (
-              <div className="flex-1 rounded-lg p-8 md:p-12 shadow-lg flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-orange-400 text-center animate-fade-in">
+              <div className="flex-1 rounded-lg p-8 md:p-12 shadow-lg flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-orange-400 text-center">
                 <svg
                   className="mx-auto mb-6"
                   width="64"
@@ -190,6 +190,7 @@ export default function ContactPage() {
                   Tell us about your project and we'll provide a custom quote within
                   24 hours.
                 </p>
+
                 <label
                   className="mb-2 text-xs md:text-sm font-semibold"
                   htmlFor="email-name"
