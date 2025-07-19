@@ -72,6 +72,8 @@ export default antfu(
       '*.db',
       '*.sqlite',
       '*.sqlite3',
+      '.pnpm-store/**/*',
+      '**/.pnpm-store/**/*',
     ],
   },
   // --- Next.js Specific Rules ---
