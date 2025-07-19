@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import './ProfileCard.css';
 
 type ProfileCardProps = {
@@ -50,6 +50,25 @@ const adjust = (
 const easeInOutCubic = (x: number): number =>
   x < 0.5 ? 4 * x * x * x : 1 - (-2 * x + 2) ** 3 / 2;
 
+// Mobile detection hook
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth <= 768
+        || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile;
+};
+
 const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   avatarUrl = '<Placeholder for avatar URL>',
   iconUrl = '<Placeholder for icon URL>',
@@ -68,9 +87,14 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 }) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+
+  // Disable heavy effects on mobile for better performance
+  const shouldEnableTilt = enableTilt && !isMobile;
+  const shouldShowBehindGradient = showBehindGradient && !isMobile;
 
   const animationHandlers = useMemo(() => {
-    if (!enableTilt) {
+    if (!shouldEnableTilt) {
       return null;
     }
 
@@ -147,7 +171,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         }
       },
     };
-  }, [enableTilt]);
+  }, [shouldEnableTilt]);
 
   const handlePointerMove = useCallback(
     (event: PointerEvent) => {
@@ -205,7 +229,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   );
 
   useEffect(() => {
-    if (!enableTilt || !animationHandlers) {
+    if (!shouldEnableTilt || !animationHandlers) {
       return;
     }
 
@@ -243,7 +267,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       animationHandlers.cancelAnimation();
     };
   }, [
-    enableTilt,
+    shouldEnableTilt,
     animationHandlers,
     handlePointerMove,
     handlePointerEnter,
@@ -255,24 +279,24 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       ({
         '--icon': iconUrl ? `url(${iconUrl})` : 'none',
         '--grain': grainUrl ? `url(${grainUrl})` : 'none',
-        '--behind-gradient': showBehindGradient
+        '--behind-gradient': shouldShowBehindGradient
           ? (behindGradient ?? DEFAULT_BEHIND_GRADIENT)
           : 'none',
         '--inner-gradient': innerGradient ?? DEFAULT_INNER_GRADIENT,
       }) as React.CSSProperties,
-    [iconUrl, grainUrl, showBehindGradient, behindGradient, innerGradient],
+    [iconUrl, grainUrl, shouldShowBehindGradient, behindGradient, innerGradient],
   );
 
   return (
     <div
       ref={wrapRef}
-      className={`pc-card-wrapper ${className}`.trim()}
+      className={`pc-card-wrapper ${isMobile ? 'pc-mobile' : ''} ${className}`.trim()}
       style={cardStyle}
     >
       <section ref={cardRef} className="pc-card">
         <div className="pc-inside">
-          <div className="pc-shine" />
-          <div className="pc-glare" />
+          {!isMobile && <div className="pc-shine" />}
+          {!isMobile && <div className="pc-glare" />}
           <div className="pc-content pc-avatar-content">
             <Image
               className="avatar"

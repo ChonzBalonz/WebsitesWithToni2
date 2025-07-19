@@ -300,7 +300,7 @@ export default function ContactPage() {
         <div className="flex-1 space-y-6 md:space-y-8">
           {/* Profile Card Placeholder - Fill in your info below */}
           {/* Example usage: import ProfileCard from 'path/to/ProfileCard' and use <ProfileCard ...props /> */}
-          <div className="mb-6">
+          <div className="mb-6 flex justify-center">
             {/* TODO: Replace the import path with the actual location of your ProfileCard component */}
             {/* import ProfileCard from 'path/to/ProfileCard'; */}
             <ProfileCard
