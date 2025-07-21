@@ -1,5 +1,6 @@
 {
   "recommendations": [
+    "zhuangtongfa.onedark-pro",
     "dbaeumer.vscode-eslint",
     "mikestead.dotenv",
     "bradlc.vscode-tailwindcss",

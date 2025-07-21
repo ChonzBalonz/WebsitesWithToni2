@@ -42,6 +42,7 @@
     "@t3-oss/env-nextjs": "^0.13.8",
     "drizzle-orm": "^0.44.2",
     "framer-motion": "^12.19.2",
+    "import-in-the-middle": "^1.14.2",
     "next": "^15.4.2",
     "next-intl": "^4.3.1",
     "ogl": "^1.0.11",
@@ -52,6 +53,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-form": "^7.58.1",
+    "require-in-the-middle": "^7.5.2",
     "resend": "^4.6.0",
     "zod": "^3.25.67"
   },
@@ -135,7 +137,9 @@
     "vitest-browser-react": "^1.0.0"
   },
   "release": {
-    "branches": ["main"],
+    "branches": [
+      "main"
+    ],
     "plugins": [
       [
         "@semantic-release/commit-analyzer",

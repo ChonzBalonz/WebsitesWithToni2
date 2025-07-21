@@ -1,4 +1,7 @@
 {
+  // Set the color theme to One Dark Pro Retro
+  "workbench.colorTheme": "One Dark Pro Retro",
+
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
   "search.exclude": {
