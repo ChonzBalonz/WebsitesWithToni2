@@ -107,6 +107,26 @@ export default function PortfolioPage() {
       ],
       price: '$399',
     },
+    {
+      id: 3,
+      title: 'Designer Clothes E-Commerce',
+      category: 'E-Commerce Website',
+      description:
+        'A sleek e-commerce site for luxury fashion, built with Next.js. Shop designer brands for men and women with a modern, user-friendly experience.',
+      livePreview: 'https://nextjs-commerce-hazel-pi-56.vercel.app/',
+      features: [
+        'Luxury fashion catalog',
+        'Responsive design',
+        'Fast performance',
+        'Modern UI/UX',
+      ],
+      results: [
+        'Enhanced user engagement',
+        'Seamless shopping experience',
+        'Optimized for conversions',
+      ],
+      price: '$499',
+    },
   ];
 
   return (
@@ -204,12 +224,21 @@ export default function PortfolioPage() {
                     <span className="inline-block bg-orange-400 text-black px-3 py-1 rounded-full text-sm font-semibold">
                       {item.category}
                     </span>
+                    {item.livePreview && (
+                      <span className="ml-2 inline-block bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold align-middle">
+                        Live Preview
+                      </span>
+                    )}
                   </div>
                   <div className="text-left sm:text-right">
-                    <div className="text-2xl font-bold text-orange-400">
-                      {item.price}
-                    </div>
-                    <div className="text-sm text-gray-400">Project Cost</div>
+                    {!item.livePreview && (
+                      <>
+                        <div className="text-2xl font-bold text-orange-400">
+                          {item.price}
+                        </div>
+                        <div className="text-sm text-gray-400">Project Cost</div>
+                      </>
+                    )}
                   </div>
                 </div>
                 <p className="text-gray-300 text-sm md:text-base">
@@ -218,30 +247,43 @@ export default function PortfolioPage() {
               </div>
 
               {/* Project Media */}
-              <div className="relative h-48 md:h-64 bg-gray-800">
-                {item.video
+              <div className={item.livePreview ? 'relative h-[600px] md:h-[800px] bg-gray-800' : 'relative h-48 md:h-64 bg-gray-800'}>
+                {item.livePreview
                   ? (
-                      <video
-                        className="w-full h-full object-cover pointer-events-none select-none"
-                        src={item.video}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        controls={false}
-                        disablePictureInPicture
-                        disableRemotePlayback
-                        poster={item.image}
+                      <iframe
+                        src={item.livePreview}
+                        title={item.title}
+                        className="w-full h-full border-0 rounded"
+                        allow="fullscreen"
                       />
                     )
-                  : (
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                      />
-                    )}
+                  : item.video
+                    ? (
+                        <video
+                          className="w-full h-full object-cover pointer-events-none select-none"
+                          src={item.video}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          controls={false}
+                          disablePictureInPicture
+                          disableRemotePlayback
+                          poster={item.image}
+                        />
+                      )
+                    : (
+                        item.image
+                          ? (
+                              <Image
+                                src={item.image}
+                                alt={item.title}
+                                fill
+                                className="object-cover"
+                              />
+                            )
+                          : null
+                      )}
               </div>
 
               {/* Project Details */}
