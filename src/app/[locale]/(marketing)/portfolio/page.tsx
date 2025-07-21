@@ -127,6 +127,24 @@ export default function PortfolioPage() {
       ],
       price: '$499',
     },
+    {
+      id: 4,
+      title: 'Plumbing Services Website',
+      category: 'Business Website',
+      description: 'A professional website for a local plumbing company, designed to attract new customers and showcase services. Built for trust and easy contact.',
+      livePreview: 'https://plumbing-website1.netlify.app/',
+      features: [
+        'Service listings',
+        'Contact form integration',
+        'Customer testimonials',
+        'Mobile-friendly design',
+      ],
+      results: [
+        'Increased local leads',
+        'Improved online presence',
+        'Easy appointment requests',
+      ],
+    },
   ];
 
   return (
