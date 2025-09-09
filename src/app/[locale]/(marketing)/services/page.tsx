@@ -250,7 +250,8 @@ export default function ServicesPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">
                 Our Process
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+              {/* Mobile version - stacked layout */}
+              <div className="block md:hidden space-y-8">
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl mb-4">💡</div>
                   <h3 className="text-lg md:text-xl font-bold mb-2">Discovery</h3>
@@ -258,6 +259,16 @@ export default function ServicesPage() {
                     We understand your business goals and requirements
                   </p>
                 </div>
+
+                {/* Path dots for mobile */}
+                <div className="flex justify-center">
+                  <div className="flex flex-col items-center space-y-1">
+                    <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                  </div>
+                </div>
+
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl mb-4">🧑‍🎨</div>
                   <h3 className="text-lg md:text-xl font-bold mb-2">Design</h3>
@@ -265,6 +276,16 @@ export default function ServicesPage() {
                     Create beautiful, functional designs that convert
                   </p>
                 </div>
+
+                {/* Path dots for mobile */}
+                <div className="flex justify-center">
+                  <div className="flex flex-col items-center space-y-1">
+                    <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                  </div>
+                </div>
+
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl mb-4">
                     <span
@@ -285,6 +306,16 @@ export default function ServicesPage() {
                     Build your website with modern, clean code
                   </p>
                 </div>
+
+                {/* Path dots for mobile */}
+                <div className="flex justify-center">
+                  <div className="flex flex-col items-center space-y-1">
+                    <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                  </div>
+                </div>
+
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl mb-4">
                     <span
@@ -296,6 +327,94 @@ export default function ServicesPage() {
                   </div>
                   <h3 className="text-lg md:text-xl font-bold mb-2">Launch</h3>
                   <p className="text-gray-300 text-sm md:text-base">
+                    Deploy and optimize for success
+                  </p>
+                </div>
+              </div>
+
+              {/* Desktop version - horizontal layout with path indicators */}
+              <div className="hidden md:flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl mb-4">💡</div>
+                  <h3 className="text-lg md:text-xl font-bold mb-2">Discovery</h3>
+                  <p className="text-gray-300 text-sm md:text-base max-w-[150px]">
+                    We understand your business goals and requirements
+                  </p>
+                </div>
+
+                {/* Path dots between Discovery and Design */}
+                <div className="flex items-center mx-4 lg:mx-8">
+                  <div className="flex space-x-2">
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.8s' }}></div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl mb-4">🧑‍🎨</div>
+                  <h3 className="text-lg md:text-xl font-bold mb-2">Design</h3>
+                  <p className="text-gray-300 text-sm md:text-base max-w-[150px]">
+                    Create beautiful, functional designs that convert
+                  </p>
+                </div>
+
+                {/* Path dots between Design and Development */}
+                <div className="flex items-center mx-4 lg:mx-8">
+                  <div className="flex space-x-2">
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.8s' }}></div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl mb-4">
+                    <span
+                      className="inline-block animate-spin"
+                      style={{ animationDuration: '3s' }}
+                    >
+                      ⚙️
+                    </span>
+                    <span
+                      className="inline-block animate-spin ml-1"
+                      style={{ animationDuration: '3s' }}
+                    >
+                      ⚙️
+                    </span>
+                  </div>
+                  <h3 className="text-lg md:text-xl font-bold mb-2">Development</h3>
+                  <p className="text-gray-300 text-sm md:text-base max-w-[150px]">
+                    Build your website with modern, clean code
+                  </p>
+                </div>
+
+                {/* Path dots between Development and Launch */}
+                <div className="flex items-center mx-4 lg:mx-8">
+                  <div className="flex space-x-2">
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.8s' }}></div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl mb-4">
+                    <span
+                      className="inline-block animate-bounce"
+                      style={{ animationDuration: '1s' }}
+                    >
+                      🚀
+                    </span>
+                  </div>
+                  <h3 className="text-lg md:text-xl font-bold mb-2">Launch</h3>
+                  <p className="text-gray-300 text-sm md:text-base max-w-[150px]">
                     Deploy and optimize for success
                   </p>
                 </div>
